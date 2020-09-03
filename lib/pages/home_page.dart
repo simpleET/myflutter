@@ -7,15 +7,59 @@ class HomePage extends StatefulWidget {
   }
 }
 
-class _HomePage extends State {
+//  The argument type . HomePage' can't be assigned to the parameter type 'Ticke
+class _HomePage extends State with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
+  List tabs = [
+    '首页',
+    '特价爆款',
+    '周边',
+    '避暑',
+    '亲子时光',
+    '海岛',
+    '网红',
+    '温泉',
+    '建筑',
+    '古镇',
+    '国家公园'
+  ];
+  TabController _tabController;
+  static const _mainColor = Color(0xFF006FF5);
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: tabs.length, vsync: this);
+    _tabController.addListener(() {
+      print(_tabController.index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('携程首页'),
-        centerTitle: true,
+        backgroundColor: _mainColor, // todo:需要自定义组件，做渐变色的背景
+//        toolbarHeight: 76,
+//        title: Text('携程首页'),
+//        centerTitle: true,
+        title: Container(
+          height: 30,
+          decoration: BoxDecoration(
+            color: Color(0x4CFFFFFF),
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+        bottom: TabBar(
+          tabs: tabs
+              .map((text) => Tab(
+                    text: text,
+                  ))
+              .toList(),
+//          controller: TabController(length: tabs.length,vsync: this), // 会报错
+          controller: _tabController,
+          isScrollable: true,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -30,11 +74,13 @@ class _HomePage extends State {
         ],
         currentIndex: _currentIndex,
         iconSize: 28,
-        type: BottomNavigationBarType.fixed, // 防止不显示颜色
+        type: BottomNavigationBarType.fixed,
+        // 防止不显示颜色
         selectedFontSize: 16,
         unselectedFontSize: 16,
-        fixedColor: Color(0xFF45A6F9),
-        onTap: (int index){ //  从0开始
+        fixedColor: _mainColor,
+        onTap: (int index) {
+          //  从0开始
           setState(() {
             _currentIndex = index;
           });

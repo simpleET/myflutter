@@ -10,6 +10,23 @@ class HomePage extends StatefulWidget {
 //  The argument type . HomePage' can't be assigned to the parameter type 'Ticke
 class _HomePage extends State with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
+  int _tabIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: tabs.length, vsync: this);
+    _tabController.addListener(() {
+      // 防止输出两次
+      if (_tabController.index == _tabController.animation.value) {
+        setState(() {
+          _tabIndex = _tabController.index;
+        });
+        print(_tabIndex.toString() + '-' + _tabController.index.toString());
+      }
+    });
+  }
+
   List tabs = [
     '首页',
     '特价爆款',
@@ -24,25 +41,15 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
     '国家公园'
   ];
   TabController _tabController;
-  static const _mainColor = Color(0xFF006FF5);
 
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: tabs.length, vsync: this);
-    _tabController.addListener(() {
-      print(_tabController.index);
-    });
-  }
+  static const _mainColor = Color(0xFF006FF5);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: _mainColor, // todo:需要自定义组件，做渐变色的背景
-//        toolbarHeight: 76,
-//        title: Text('携程首页'),
-//        centerTitle: true,
+        // titleSpacing:10, // 设置标题距离屏幕左右的边距
+        toolbarHeight: 90,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -58,48 +65,72 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        Image(
-                            image: AssetImage("images/zoom-1.png"), height: 16),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: 5,
-                          ),
-                          child: Text(
-                            '长隆周年庆，门票7折起！',
-                            style: TextStyle(fontSize: 14, color: Colors.white),
-                          ),
-                        )
-                      ],
+                    GestureDetector(
+                      onTap: () {
+                        print('去搜索页面');
+                      },
+                      child: Row(
+                        children: [
+                          Image(
+                              image: AssetImage("images/zoom-1.png"),
+                              height: 16),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 5,
+                            ),
+                            child: Text(
+                              '长隆周年庆，门票7折起！',
+                              style:
+                                  TextStyle(fontSize: 14, color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                    Image(image: AssetImage("images/addr-1.png"), height: 18),
+                    GestureDetector(
+                      onTap: () {
+                        print('跳去地图页面');
+                      },
+                      child: Image(
+                          image: AssetImage("images/addr-1.png"), height: 18),
+                    )
                   ],
                 ),
               ),
             ),
-           Stack(
-             alignment: Alignment.topRight,
-             children: [
-               Icon(Icons.message),
-               Container(
-                 width: 8,
-                 height: 8,
-                 color: Colors.red,
-               )
-             ],
-           )
+            GestureDetector(
+              onTap: () {
+                print('查看消息');
+              },
+              child: Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  Icon(Icons.message),
+                  Container(
+                    width: 8,
+                    height: 8,
+                    color: Colors.red,
+                  )
+                ],
+              ),
+            ),
           ],
         ),
         bottom: TabBar(
-          tabs: tabs
-              .map((text) => Tab(
-                    text: text,
-                  ))
-              .toList(),
+          tabs: tabs.asMap().entries.map((entry) => _tabs(entry)).toList(),
 //          controller: TabController(length: tabs.length,vsync: this), // 会报错
           controller: _tabController,
           isScrollable: true,
+          labelStyle: TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+          unselectedLabelStyle: TextStyle(fontSize: 18, color: Colors.white),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            Color(0xFF006FF5),
+            Color(0xB238A6FF),
+          ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -129,6 +160,55 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
       ),
       body: Center(
         child: Text('首页333'),
+      ),
+    );
+  }
+
+  // 顶部的导航栏
+  Widget _tabs(entry) {
+    return Container(
+      height: 30,
+      margin: EdgeInsets.only(bottom: 5),
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Container(
+              margin: EdgeInsets.only(bottom: 5),
+              child: Row(
+                children: [
+                  Offstage(
+                    offstage: entry.key != 1,
+                    child: GestureDetector(
+                      onTap: () {
+                        print('跳去手机页面');
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(right: 3),
+                        child: Image(
+                          image: AssetImage('images/fire.png'),
+                          width: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    entry.value,
+                  ),
+                ],
+              )),
+          Offstage(
+            // true 为不显示，false 显示
+            offstage: _tabIndex != entry.key || entry.key == 1,
+            child: Container(
+              width: 20,
+              height: 5,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

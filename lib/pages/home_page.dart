@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lskdemo/pages/trip_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
         setState(() {
           _tabIndex = _tabController.index;
         });
-        print(_tabIndex.toString() + '-' + _tabController.index.toString());
+        print(_tabIndex.toString() + '--' + _tabController.index.toString());
       }
     });
   }
@@ -135,14 +136,11 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.date_range), title: Text('行程')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.camera_alt), title: Text('旅拍')),
-          BottomNavigationBarItem(icon: Icon(Icons.headset), title: Text('客服')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text('我的')),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页'),
+          BottomNavigationBarItem(icon: Icon(Icons.date_range), label: '行程'),
+          BottomNavigationBarItem(icon: Icon(Icons.camera_alt), label: '旅拍'),
+          BottomNavigationBarItem(icon: Icon(Icons.headset), label: '客服'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: '我的'),
         ],
         currentIndex: _currentIndex,
         iconSize: 28,
@@ -151,11 +149,35 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
         selectedFontSize: 16,
         unselectedFontSize: 16,
         fixedColor: _mainColor,
+        // 从0开始
         onTap: (int index) {
-          //  从0开始
           setState(() {
             _currentIndex = index;
           });
+          String routeName = '';
+
+          switch (index) {
+            case 0:
+              routeName = 'home_page';
+              break;
+            case 1:
+              routeName = 'trip_page';
+              break;
+            case 2:
+              routeName = 'travel_page';
+              break;
+            case 3:
+              routeName = 'service_page';
+              break;
+            case 4:
+              routeName = 'my_page';
+              break;
+            default:
+              routeName = 'home_page';
+              break;
+          }
+
+          Navigator.pushNamed(context, routeName);
         },
       ),
       body: Center(

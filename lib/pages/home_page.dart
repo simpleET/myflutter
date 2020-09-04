@@ -43,12 +43,53 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
 //        toolbarHeight: 76,
 //        title: Text('携程首页'),
 //        centerTitle: true,
-        title: Container(
-          height: 30,
-          decoration: BoxDecoration(
-            color: Color(0x4CFFFFFF),
-            borderRadius: BorderRadius.circular(15),
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Container(
+                height: 30,
+                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                margin: EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(
+                  color: Color(0x4CFFFFFF),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Image(
+                            image: AssetImage("images/zoom-1.png"), height: 16),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: 5,
+                          ),
+                          child: Text(
+                            '长隆周年庆，门票7折起！',
+                            style: TextStyle(fontSize: 14, color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
+                    Image(image: AssetImage("images/addr-1.png"), height: 18),
+                  ],
+                ),
+              ),
+            ),
+           Stack(
+             alignment: Alignment.topRight,
+             children: [
+               Icon(Icons.message),
+               Container(
+                 width: 8,
+                 height: 8,
+                 color: Colors.red,
+               )
+             ],
+           )
+          ],
         ),
         bottom: TabBar(
           tabs: tabs

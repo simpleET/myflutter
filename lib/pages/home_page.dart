@@ -41,6 +41,9 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
     '古镇',
     '国家公园'
   ];
+  List topLinks=[
+//    {'name':'攻略.景点','imgSrc';'images/top-link-1.png','link':'https://www.baidu.com/'},
+  ];
   TabController _tabController;
 
   static const _mainColor = Color(0xFF006FF5);
@@ -180,9 +183,20 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
           Navigator.pushNamed(context, routeName);
         },
       ),
-      body: Center(
-        child: Text('首页333'),
+      body: Column(
+        children: [
+          Row(
+            children: [],
+          )
+        ],
       ),
+    );
+  }
+
+  // 顶部的链接
+  Widget _topLink(item) {
+    return Column(
+      children: [Image(image: AssetImage(item.imgSrc)), Text(item.name)],
     );
   }
 
@@ -234,4 +248,6 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
       ),
     );
   }
+
+
 }

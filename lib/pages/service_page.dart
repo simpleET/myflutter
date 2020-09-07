@@ -12,6 +12,11 @@ class _ServicePage extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('客服'),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
       body: Center(
         child: Text('客服'),
       ),

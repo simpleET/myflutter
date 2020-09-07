@@ -12,8 +12,13 @@ class _MyPage extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('个人中心'),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
+      ),
       body: Center(
-        child: Text('首页'),
+        child: Text('个人中心'),
       ),
     );
   }

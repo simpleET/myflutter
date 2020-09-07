@@ -41,7 +41,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
     '古镇',
     '国家公园'
   ];
-  List topLinks=[
+  List topLinks = [
 //    {'name':'攻略.景点','imgSrc';'images/top-link-1.png','link':'https://www.baidu.com/'},
   ];
   TabController _tabController;
@@ -139,11 +139,14 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: '首页'),
-          BottomNavigationBarItem(icon: Icon(Icons.date_range), label: '行程'),
-          BottomNavigationBarItem(icon: Icon(Icons.camera_alt), label: '旅拍'),
-          BottomNavigationBarItem(icon: Icon(Icons.headset), label: '客服'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: '我的'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.date_range), title: Text('行程')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.camera_alt), title: Text('旅拍')),
+          BottomNavigationBarItem(icon: Icon(Icons.headset), title: Text('客服')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), title: Text('我的')),
         ],
         currentIndex: _currentIndex,
         iconSize: 28,
@@ -176,11 +179,12 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
               routeName = 'my_page';
               break;
             default:
-              routeName = 'home_page';
+              routeName = '';
               break;
           }
-
-          Navigator.pushNamed(context, routeName);
+          if (routeName != '') {
+            Navigator.pushNamed(context, routeName);
+          }
         },
       ),
       body: Column(
@@ -248,6 +252,4 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
       ),
     );
   }
-
-
 }

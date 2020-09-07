@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         primaryColor: _mainColor,
       ),
       routes: {
+        '/': (context) => HomePage(),
         'home_page': (context) => HomePage(),
         'trip_page': (context) => TripPage(),
         'travel_page': (context) => TravelPage(),

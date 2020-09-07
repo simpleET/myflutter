@@ -60,6 +60,13 @@ flutter:
       - images/top-link-3.png
       - images/top-link-4.png
       - images/top-link-5.png
+      - images/grid-1-1.png
+      - images/grid-1-2.png
+      - images/grid-2-1.png
+      - images/grid-3-1.png
+      - images/grid-big-3.png
+      - images/grid-big-2.png
+      - images/mid-icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

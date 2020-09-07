@@ -29,6 +29,12 @@ class MyApp extends StatelessWidget {
         'my_page': (context) => MyPage(),
       },
       initialRoute: 'home_page',
+     /* onGenerateRoute: (RouteSettings settings) {
+        return MaterialPageRoute(builder: (context){
+          String routeName = settings.name;
+          print(routeName);
+        });
+      },*/
     );
   }
 }

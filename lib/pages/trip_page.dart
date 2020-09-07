@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class TripPage extends StatefulWidget {
   @override
   _TripPage createState() {
@@ -11,6 +10,8 @@ class TripPage extends StatefulWidget {
 class _TripPage extends State {
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context).settings.arguments;
+    print('行程：$args');
     return Scaffold(
       appBar: AppBar(
         title: Text('行程'),

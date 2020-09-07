@@ -19,7 +19,6 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    print(_currentIndex);
     setState(() {
       _currentIndex = 0;
     });
@@ -200,7 +199,8 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                 routeName = 'home_page';
                 break;
             }
-            var route = await Navigator.pushNamed(context, routeName);
+            var route = await Navigator.pushNamed(context, routeName,
+                arguments: {'lsk': '4343'});
 //            print('路由返回了$route');
             _currentIndex = 0;
           },

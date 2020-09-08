@@ -90,6 +90,19 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
     {'name': '专车.租车', 'imgSrc': 'images/grid-1-2.png', 'liink': '#'},
   ];
 
+  List gridSmall =[
+    {'name': '外币兑换', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+    {'name': '理财', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+    {'name': '借钱', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+    {'name': '保险', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+    {'name': '礼品卡', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+    {'name': '签证', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+    {'name': '一日游', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+    {'name': '会员.签到', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+    {'name': '加盟合作', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+    {'name': '更多', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+  ];
+
   int _currentIndex = 0;
   int _tabIndex = 0;
   PageController _pageController = PageController(
@@ -291,10 +304,36 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
               ),
             )
           ),
+          Container(
+            height: 140,
+          padding:EdgeInsets.symmetric(horizontal: 10),
+            child: Wrap(
+              runAlignment:WrapAlignment.center,
+              runSpacing: 15,
+              children: gridSmall.asMap().entries.map((entry) => _gridSmall(entry)).toList(),
+            ),
+          ),
         ],
       ),
     );
   }
+
+  Widget _gridSmall(entry){
+    var item = entry.value;
+    return Container(
+      width: (MediaQuery.of(context).size.width-20)/5,
+      child: Column(
+        children: [
+         Container(
+           margin: EdgeInsets.only(bottom: 2),
+           child:  Image(image: AssetImage(item['imgSrc']),height: 20,),
+         ),
+          Text(item['name'],style: TextStyle(color: Color(0xFF666666),fontSize: 16),)
+        ],
+      ),
+    );
+  }
+
 
   Widget _gridLink(entry) {
     return GestureDetector(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:lskdemo/pages/trip_page.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:lskdemo/widgets/flutter_page_indicator.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -90,7 +91,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
     {'name': '专车.租车', 'imgSrc': 'images/grid-1-2.png', 'liink': '#'},
   ];
 
-  List gridSmall =[
+  List gridSmall = [
     {'name': '外币兑换', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
     {'name': '理财', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
     {'name': '借钱', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
@@ -101,6 +102,13 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
     {'name': '会员.签到', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
     {'name': '加盟合作', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
     {'name': '更多', 'imgSrc': 'images/mid-icon.png', 'link': '#'},
+  ];
+
+  List images = [
+    'images/swiper-1.jpg',
+    'images/swiper-1.jpg',
+    'images/swiper-1.jpg',
+    'images/swiper-1.jpg',
   ];
 
   int _currentIndex = 0;
@@ -281,7 +289,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
           _currentIndex = 0;
         },
       ),
-      body: Column(
+      body: ListView(
         children: [
           // 顶部链接
           Container(
@@ -294,94 +302,147 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
           ),
           // 酒店
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: ClipRRect(
-             borderRadius:BorderRadius.circular(10) ,
-              child: Column(
-                children: gridLinks
-                    .asMap()
-                    .entries
-                    .map((entry) => _gridLink(entry))
-                    .toList(),
-              ),
-            )
-          ),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Column(
+                  children: gridLinks
+                      .asMap()
+                      .entries
+                      .map((entry) => _gridLink(entry))
+                      .toList(),
+                ),
+              )),
           // 外币兑换
           Container(
             height: 140,
-          padding:EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             child: Wrap(
-              runAlignment:WrapAlignment.center,
+              runAlignment: WrapAlignment.center,
               runSpacing: 15,
-              children: gridSmall.asMap().entries.map((entry) => _gridSmall(entry)).toList(),
+              children: gridSmall
+                  .asMap()
+                  .entries
+                  .map((entry) => _gridSmall(entry))
+                  .toList(),
             ),
           ),
+          // 轮播广告图
+          Container(
+              height: 120,
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Swiper(
+                  itemCount: images.length,
+                  autoplay: true,
+                  pagination: SwiperCustomPagination(
+                    builder: (BuildContext context,SwiperPluginConfig config){
+                      return Container(
+                        alignment: Alignment.bottomCenter,
+                        height: 120,
+                        child: PageIndicator(
+                          layout: PageIndicatorLayout.LINE,
+                          size: 20,
+                          space: 0,
+//                          scale:2,
+                          count:  images.length,
+                          controller: config.pageController,
+                        ),
+                      );
+                    }
+                  ),
+                  controller: SwiperController(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Image(
+                      image: AssetImage(images[index]),
+                      fit: BoxFit.fill,
+                    );
+                  },
+                ),
+              )),
+          // 测试用
+          Container(
+            height: 100,
+            color: Colors.teal,
+          )
         ],
       ),
     );
   }
 
-  Widget _gridSmall(entry){
+  Widget _gridSmall(entry) {
     var item = entry.value;
     return Container(
-      width: (MediaQuery.of(context).size.width-20)/5,
+      width: (MediaQuery.of(context).size.width - 20) / 5,
       child: Column(
         children: [
-         Container(
-           margin: EdgeInsets.only(bottom: 2),
-           child:  Image(image: AssetImage(item['imgSrc']),height: 20,),
-         ),
-          Text(item['name'],style: TextStyle(color: Color(0xFF666666),fontSize: 16),)
+          Container(
+            margin: EdgeInsets.only(bottom: 2),
+            child: Image(
+              image: AssetImage(item['imgSrc']),
+              height: 20,
+            ),
+          ),
+          Text(
+            item['name'],
+            style: TextStyle(color: Color(0xFF666666), fontSize: 16),
+          )
         ],
       ),
     );
   }
-
 
   Widget _gridLink(entry) {
     return GestureDetector(
         child: Container(
-        decoration: BoxDecoration(
-          border: Border(bottom:BorderSide(color: Colors.white,width: entry.key==2?0:1),)
-        ),
-          child:Flex(
-            direction: Axis.horizontal,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  width: 130,
-                  height: 85,
-                  color: entry.key == 0 ? Color(0xFF4392F9): entry.key == 1 ? Color(0xFF4392F9) : Color(0xFF33C6B6),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(
-                        image: AssetImage(entry.value['imgSrc']),
-                        height: 50,
-                      ),
-                      Text(
-                        entry.value['name'],
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ],
+      decoration: BoxDecoration(
+          border: Border(
+        bottom: BorderSide(color: Colors.white, width: entry.key == 2 ? 0 : 1),
+      )),
+      child: Flex(
+        direction: Axis.horizontal,
+        children: [
+          Expanded(
+            flex: 1,
+            child: Container(
+              width: 130,
+              height: 85,
+              color: entry.key == 0
+                  ? Color(0xFF4392F9)
+                  : entry.key == 1 ? Color(0xFF4392F9) : Color(0xFF33C6B6),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(
+                    image: AssetImage(entry.value['imgSrc']),
+                    height: 50,
                   ),
-                ),
+                  Text(
+                    entry.value['name'],
+                    style: TextStyle(fontSize: 18, color: Colors.white),
+                  ),
+                ],
               ),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  child: Flex(
-                    direction: Axis.horizontal,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: gridChild.asMap().entries.map((child) => _gridLinkItem(child, entry.key))
-                        .toList(),
-                  ),
-                ),
-              )
-            ],
+            ),
           ),
-        ));
+          Expanded(
+            flex: 2,
+            child: Container(
+              child: Flex(
+                direction: Axis.horizontal,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: gridChild
+                    .asMap()
+                    .entries
+                    .map((child) => _gridLinkItem(child, entry.key))
+                    .toList(),
+              ),
+            ),
+          )
+        ],
+      ),
+    ));
   }
 
   Widget _gridLinkItem(child, index) {
@@ -394,7 +455,8 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
           color: index == 0
               ? Color(0xFFFFF1E6)
               : index == 1 ? Color(0xFFE8F5FE) : Color(0xFFE4FBF5),
-          border: Border(left: BorderSide(color: Colors.white,width: key==0?0:1)),
+          border: Border(
+              left: BorderSide(color: Colors.white, width: key == 0 ? 0 : 1)),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -402,7 +464,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
             Container(
               margin: EdgeInsets.only(bottom: 5),
               child: Image(
-                image: AssetImage( item['imgSrc']),
+                image: AssetImage(item['imgSrc']),
                 height: 35,
               ),
             ),

@@ -67,6 +67,7 @@ flutter:
       - images/grid-big-3.png
       - images/grid-big-2.png
       - images/mid-icon.png
+      - images/swiper-1.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

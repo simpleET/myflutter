@@ -283,6 +283,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
       ),
       body: Column(
         children: [
+          // 顶部链接
           Container(
             height: 90,
             padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -291,6 +292,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
               children: topLinks.map((item) => _topLink(item)).toList(),
             ),
           ),
+          // 酒店
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: ClipRRect(
@@ -304,6 +306,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
               ),
             )
           ),
+          // 外币兑换
           Container(
             height: 140,
           padding:EdgeInsets.symmetric(horizontal: 10),

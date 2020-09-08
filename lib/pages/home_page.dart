@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:lskdemo/widgets/flutter_page_indicator.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -105,10 +106,62 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
   ];
 
   List images = [
-    'images/swiper-1.jpg',
-    'images/swiper-1.jpg',
-    'images/swiper-1.jpg',
-    'images/swiper-1.jpg',
+    'images/banner-1.jpg',
+    'images/banner-2.jpg',
+    'images/banner-3.jpg',
+  ];
+
+  List waterFall = [
+    {
+      'cityName': '上海',
+      'imgSrc': 'images/pic-1.jpg',
+      'title': '上海迪士尼度假区',
+      'subTitle': '充满童趣的神奇世界',
+      'introText': '上海景点人气榜第1名',
+      'comment': 59534400,
+    },
+    {
+      'cityName': '广州',
+      'imgSrc': 'images/pic-1.jpg',
+      'title': '广州白云机场曼达',
+      'subTitle': '全网底价返41',
+      'introText': '酒店位置优越',
+      'comment': 534400,
+    },
+    {
+      'cityName': '北京',
+      'imgSrc': 'images/pic-3.jpg',
+      'title': '北京大兴机场',
+      'subTitle': '中国最大的机场',
+      'introText': '美丽、科幻',
+      'comment': 5340,
+    },
+  ];
+  List waterFallRight = [
+    {
+      'cityName': '上海',
+      'imgSrc': 'images/pic-2.jpg',
+      'title': '上海迪士尼度假区',
+      'subTitle': '充满童趣的神奇世界',
+      'introText': '上海景点人气榜第1名',
+      'comment': 153440,
+    },
+    {
+      'cityName': '广州',
+      'imgSrc': 'images/pic-3.jpg',
+      'title': '广州白云机场曼达',
+      'subTitle': '全网底价返41',
+      'introText': '酒店位置优越',
+      'comment': 29534444090,
+    },
+    {
+      'cityName': '北京',
+      'imgSrc': 'images/pic-2.jpg',
+      'title': '北京大兴机场北京大兴机场',
+      'subTitle': '中国最大的机场',
+      'introText': '美丽、科幻',
+      'comment': 999,
+    },
   ];
 
   int _currentIndex = 0;
@@ -336,22 +389,21 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                 child: Swiper(
                   itemCount: images.length,
                   autoplay: true,
-                  pagination: SwiperCustomPagination(
-                    builder: (BuildContext context,SwiperPluginConfig config){
-                      return Container(
-                        alignment: Alignment.bottomCenter,
-                        height: 120,
-                        child: PageIndicator(
-                          layout: PageIndicatorLayout.LINE,
-                          size: 20,
-                          space: 0,
+                  pagination: SwiperCustomPagination(builder:
+                      (BuildContext context, SwiperPluginConfig config) {
+                    return Container(
+                      alignment: Alignment.bottomCenter,
+                      height: 120,
+                      child: PageIndicator(
+                        layout: PageIndicatorLayout.LINE,
+                        size: 20,
+                        space: 0,
 //                          scale:2,
-                          count:  images.length,
-                          controller: config.pageController,
-                        ),
-                      );
-                    }
-                  ),
+                        count: images.length,
+                        controller: config.pageController,
+                      ),
+                    );
+                  }),
                   controller: SwiperController(),
                   itemBuilder: (BuildContext context, int index) {
                     return Image(
@@ -361,10 +413,169 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                   },
                 ),
               )),
-          // 测试用
+          // 瀑布流图片展示
           Container(
-            height: 100,
-            color: Colors.teal,
+            decoration: BoxDecoration(
+              color: Color(0xfff1f1f1),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            margin: EdgeInsets.only(top: 20),
+            child: Flex(
+              direction: Axis.horizontal,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: waterFall
+                            .map((item) => _waterfall(item, true))
+                            .toList(),
+                      ),
+                    )),
+                Expanded(
+                    flex: 1,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: Column(
+                        children: waterFallRight
+                            .map((item) => _waterfall(item, false))
+                            .toList(),
+                      ),
+                    ))
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _waterfall(item, isLeft) {
+    return Container(
+//      height: isLeft ? 350 : 300,
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+      margin: EdgeInsets.only(bottom: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+            child: Stack(
+              alignment: Alignment.bottomLeft,
+              children: [
+                Image(
+                  image: AssetImage(item['imgSrc']),
+                  fit: BoxFit.fill,
+                ),
+                Flex(
+                  direction: Axis.horizontal,
+                  children: [
+                    Container(
+                      height: 25,
+                      margin: EdgeInsets.only(left: 5, bottom: 8),
+                      padding: EdgeInsets.only(left: 5, right: 10),
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(0, 0, 0, 0.6),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 3),
+                            child: Icon(
+                              Icons.location_on,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          ),
+                          Text(
+                            item['cityName'],
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Text(
+              item['title'],
+              style: TextStyle(
+                  color: Color(0xff333333),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          Container(
+//            height: 25,
+            margin: EdgeInsets.only(left: 10),
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Color(0xffF95A56), Color(0xffFB8A56)]),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Text(
+              item['subTitle'],
+              style: TextStyle(color: Colors.white, fontSize: 14),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Text(
+              item['introText'],
+              style: TextStyle(color: Color(0xFF333333), fontSize: 14),
+            ),
+          ),
+          Container(
+//            padding: EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+            child: Flex(
+              direction: Axis.horizontal,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    margin: EdgeInsets.only(right: 5),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          '￥365',
+                          style: TextStyle(color: Colors.red, fontSize: 20),
+                        ),
+                        Text(
+                          '起',
+                          style: TextStyle(color: Colors.red, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    child: Text(
+                      item['comment'].toString() +'条评论',
+                      style: TextStyle(color: Color(0xFF333333), fontSize: 14),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),

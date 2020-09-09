@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:lskdemo/widgets/flutter_page_indicator.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'dart:ui' as ui;
 
 class HomePage extends StatefulWidget {
   @override
@@ -164,6 +165,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
     },
   ];
 
+  bool isLoading = false;
   int _currentIndex = 0;
   int _tabIndex = 0;
   PageController _pageController = PageController(
@@ -201,256 +203,307 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        //
-        // titleSpacing:10, // 设置标题距离屏幕左右的边距
-        toolbarHeight: 90,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Container(
-                height: 30,
-                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 12),
-                margin: EdgeInsets.only(right: 10),
-                decoration: BoxDecoration(
-                  color: Color(0x4CFFFFFF),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        print('去搜索页面');
-                      },
-                      child: Row(
-                        children: [
-                          Image(
-                              image: AssetImage("images/zoom-1.png"),
-                              height: 16),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: 5,
-                            ),
-                            child: Text(
-                              '长隆周年庆，门票7折起！',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.white),
-                            ),
-                          )
-                        ],
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          //
+          // titleSpacing:10, // 设置标题距离屏幕左右的边距
+          toolbarHeight: 90,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Container(
+                  height: 30,
+                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                  margin: EdgeInsets.only(right: 10),
+                  decoration: BoxDecoration(
+                    color: Color(0x4CFFFFFF),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          print('去搜索页面');
+                        },
+                        child: Row(
+                          children: [
+                            Image(
+                                image: AssetImage("images/zoom-1.png"),
+                                height: 16),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: 5,
+                              ),
+                              child: Text(
+                                '长隆周年庆，门票7折起！',
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.white),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        print('跳去地图页面');
-                      },
-                      child: Image(
-                          image: AssetImage("images/addr-1.png"), height: 18),
+                      GestureDetector(
+                        onTap: () {
+                          print('跳去地图页面');
+                        },
+                        child: Image(
+                            image: AssetImage("images/addr-1.png"), height: 18),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  print('查看消息');
+                },
+                child: Stack(
+                  alignment: Alignment.topRight,
+                  children: [
+                    Icon(Icons.message),
+                    Container(
+                      width: 8,
+                      height: 8,
+                      color: Colors.red,
                     )
                   ],
                 ),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                print('查看消息');
-              },
-              child: Stack(
-                alignment: Alignment.topRight,
-                children: [
-                  Icon(Icons.message),
-                  Container(
-                    width: 8,
-                    height: 8,
-                    color: Colors.red,
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-        bottom: TabBar(
-          tabs: tabs.asMap().entries.map((entry) => _tabs(entry)).toList(),
+            ],
+          ),
+          bottom: TabBar(
+            tabs: tabs.asMap().entries.map((entry) => _tabs(entry)).toList(),
 //          controller: TabController(length: tabs.length,vsync: this), // 会报错
-          controller: _tabController,
-          isScrollable: true,
-          labelStyle: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-          unselectedLabelStyle: TextStyle(fontSize: 18, color: Colors.white),
+            controller: _tabController,
+            isScrollable: true,
+            labelStyle: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+            unselectedLabelStyle: TextStyle(fontSize: 18, color: Colors.white),
+          ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+              Color(0xFF006FF5),
+              Color(0xB238A6FF),
+            ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
+          ),
         ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Color(0xFF006FF5),
-            Color(0xB238A6FF),
-          ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.date_range), title: Text('行程')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.camera_alt), title: Text('旅拍')),
-          BottomNavigationBarItem(icon: Icon(Icons.headset), title: Text('客服')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), title: Text('我的')),
-        ],
-        currentIndex: _currentIndex,
-        iconSize: 28,
-        type: BottomNavigationBarType.fixed,
-        // 防止不显示颜色
-        selectedFontSize: 16,
-        unselectedFontSize: 16,
-        fixedColor: _mainColor,
-        // 从0开始
-        onTap: (int index) async {
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.date_range), title: Text('行程')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.camera_alt), title: Text('旅拍')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.headset), title: Text('客服')),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), title: Text('我的')),
+          ],
+          currentIndex: _currentIndex,
+          iconSize: 28,
+          type: BottomNavigationBarType.fixed,
+          // 防止不显示颜色
+          selectedFontSize: 16,
+          unselectedFontSize: 16,
+          fixedColor: _mainColor,
+          // 从0开始
+          onTap: (int index) async {
 //          _pageController.jumpToPage(index);
 
-          setState(() {
-            _currentIndex = index;
-          });
-          String routeName = '';
+            setState(() {
+              _currentIndex = index;
+            });
+            String routeName = '';
 
-          switch (index) {
-            case 0:
-              routeName = 'home_page';
-              break;
-            case 1:
-              routeName = 'trip_page';
-              break;
-            case 2:
-              routeName = 'travel_page';
-              break;
-            case 3:
-              routeName = 'service_page';
-              break;
-            case 4:
-              routeName = 'my_page';
-              break;
-            default:
-              routeName = 'home_page';
-              break;
-          }
-          var route = await Navigator.pushNamed(context, routeName,
-              arguments: {'lsk': '4343'});
+            switch (index) {
+              case 0:
+                routeName = 'home_page';
+                break;
+              case 1:
+                routeName = 'trip_page';
+                break;
+              case 2:
+                routeName = 'travel_page';
+                break;
+              case 3:
+                routeName = 'service_page';
+                break;
+              case 4:
+                routeName = 'my_page';
+                break;
+              default:
+                routeName = 'home_page';
+                break;
+            }
+            var route = await Navigator.pushNamed(context, routeName,
+                arguments: {'lsk': '4343'});
 //            print('路由返回了$route');
-          _currentIndex = 0;
-        },
-      ),
-      body: ListView(
-        children: [
-          // 顶部链接
-          Container(
-            height: 90,
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: topLinks.map((item) => _topLink(item)).toList(),
-            ),
-          ),
-          // 酒店
-          Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Column(
-                  children: gridLinks
-                      .asMap()
-                      .entries
-                      .map((entry) => _gridLink(entry))
-                      .toList(),
-                ),
-              )),
-          // 外币兑换
-          Container(
-            height: 140,
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Wrap(
-              runAlignment: WrapAlignment.center,
-              runSpacing: 15,
-              children: gridSmall
-                  .asMap()
-                  .entries
-                  .map((entry) => _gridSmall(entry))
-                  .toList(),
-            ),
-          ),
-          // 轮播广告图
-          Container(
-              height: 120,
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Swiper(
-                  itemCount: images.length,
-                  autoplay: true,
-                  pagination: SwiperCustomPagination(builder:
-                      (BuildContext context, SwiperPluginConfig config) {
-                    return Container(
-                      alignment: Alignment.bottomCenter,
-                      height: 120,
-                      child: PageIndicator(
-                        layout: PageIndicatorLayout.LINE,
-                        size: 20,
-                        space: 0,
-//                          scale:2,
-                        count: images.length,
-                        controller: config.pageController,
-                      ),
-                    );
-                  }),
-                  controller: SwiperController(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Image(
-                      image: AssetImage(images[index]),
-                      fit: BoxFit.fill,
-                    );
-                  },
-                ),
-              )),
-          // 瀑布流图片展示
-          Container(
-            decoration: BoxDecoration(
-              color: Color(0xfff1f1f1),
-            ),
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            margin: EdgeInsets.only(top: 20),
-            child: Flex(
-              direction: Axis.horizontal,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            _currentIndex = 0;
+          },
+        ),
+        body: NotificationListener(
+            onNotification: (ScrollNotification notification) {
+              bool canLoad = !isLoading &&
+                  notification.metrics.maxScrollExtent -
+                          notification.metrics.pixels <
+                      200 &&
+                  notification.depth == 0;
+              if (canLoad) {
+                setState(() {
+                  isLoading = true;
+                });
+
+                Future.delayed(Duration(seconds: 1), () {
+                  setState(() {
+                    isLoading = false;
+                    waterFall.insertAll(waterFall.length - 1,
+                        List.from(waterFall.take(5)).toList());
+                    waterFallRight.insertAll(waterFallRight.length - 1,
+                        List.from(waterFallRight).take(5).toList());
+                  });
+                });
+              }
+
+              return true; // true 不允许冒泡,false 允许冒泡
+            },
+            child: Stack(
+              alignment: Alignment.center,
               children: [
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: waterFall
-                            .map((item) => _waterfall(item, true))
+                ListView(
+                  children: [
+                    // 顶部链接
+                    Container(
+                      height: 90,
+                      padding:
+                          EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children:
+                            topLinks.map((item) => _topLink(item)).toList(),
+                      ),
+                    ),
+                    // 酒店
+                    Container(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Column(
+                            children: gridLinks
+                                .asMap()
+                                .entries
+                                .map((entry) => _gridLink(entry))
+                                .toList(),
+                          ),
+                        )),
+                    // 外币兑换
+                    Container(
+                      height: 140,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Wrap(
+                        runAlignment: WrapAlignment.center,
+                        runSpacing: 15,
+                        children: gridSmall
+                            .asMap()
+                            .entries
+                            .map((entry) => _gridSmall(entry))
                             .toList(),
                       ),
-                    )),
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      child: Column(
-                        children: waterFallRight
-                            .map((item) => _waterfall(item, false))
-                            .toList(),
+                    ),
+                    // 轮播广告图
+                    Container(
+                        height: 120,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Swiper(
+                            itemCount: images.length,
+                            autoplay: true,
+                            pagination: SwiperCustomPagination(builder:
+                                (BuildContext context,
+                                    SwiperPluginConfig config) {
+                              return Container(
+                                alignment: Alignment.bottomCenter,
+                                height: 120,
+                                child: PageIndicator(
+                                  layout: PageIndicatorLayout.LINE,
+                                  size: 20,
+                                  space: 0,
+//                          scale:2,
+                                  count: images.length,
+                                  controller: config.pageController,
+                                ),
+                              );
+                            }),
+                            controller: SwiperController(),
+                            itemBuilder: (BuildContext context, int index) {
+                              return Image(
+                                image: AssetImage(images[index]),
+                                fit: BoxFit.fill,
+                              );
+                            },
+                          ),
+                        )),
+                    // 瀑布流图片展示
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xfff1f1f1),
                       ),
-                    ))
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      margin: EdgeInsets.only(top: 20),
+                      child: Flex(
+                        direction: Axis.horizontal,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: waterFall
+                                      .map((item) => _waterfall(item, true))
+                                      .toList(),
+                                ),
+                              )),
+                          Expanded(
+                              flex: 1,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 5),
+                                child: Column(
+                                  children: waterFallRight
+                                      .map((item) => _waterfall(item, false))
+                                      .toList(),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                    Offstage(
+                      offstage: !isLoading,
+//                      offstage: false,
+                      child: Container(
+                          color: Color.fromRGBO(0, 0, 0, 0.1),
+                          padding: EdgeInsets.symmetric(vertical: 4),
+                          child: Center(
+                            child: SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  backgroundColor: Colors.white,
+                                  valueColor:
+                                      AlwaysStoppedAnimation(Colors.blue),
+                                  strokeWidth: 2,
+                                )),
+                          )),
+                    )
+                  ],
+                ),
               ],
-            ),
-          ),
-        ],
-      ),
-    );
+            )));
   }
 
   Widget _waterfall(item, isLeft) {
@@ -567,7 +620,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                   flex: 3,
                   child: Container(
                     child: Text(
-                      item['comment'].toString() +'条评论',
+                      item['comment'].toString() + '条评论',
                       style: TextStyle(color: Color(0xFF333333), fontSize: 14),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

@@ -172,9 +172,16 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
     initialPage: 0,
   );
 
+  ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
+
+    _scrollController.addListener(() {
+      print(_scrollController.offset);
+    });
+
     setState(() {
       _currentIndex = 0;
     });
@@ -194,6 +201,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
   void dispose() {
     super.dispose();
     _pageController.dispose();
+    _scrollController.dispose();
   }
 
   TabController _tabController;
@@ -370,139 +378,145 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
 
               return true; // true 不允许冒泡,false 允许冒泡
             },
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                ListView(
-                  children: [
-                    // 顶部链接
-                    Container(
-                      height: 90,
-                      padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children:
-                            topLinks.map((item) => _topLink(item)).toList(),
-                      ),
+            child: RefreshIndicator(
+              // 下拉刷新，会自动出现一个刷新icon
+              onRefresh: () async {
+                await Future.delayed(
+                  Duration(seconds: 1),
+                );
+                setState(() {
+                  List right = List.from(waterFallRight);
+                  List left = List.from(waterFall);
+                  waterFall = right.take(3).toList();
+                  waterFallRight = left.take(3).toList();
+                });
+              },
+              child: ListView(
+                children: [
+                  // 顶部链接
+                  Container(
+                    height: 90,
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: topLinks.map((item) => _topLink(item)).toList(),
                     ),
-                    // 酒店
-                    Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Column(
-                            children: gridLinks
-                                .asMap()
-                                .entries
-                                .map((entry) => _gridLink(entry))
-                                .toList(),
-                          ),
-                        )),
-                    // 外币兑换
-                    Container(
-                      height: 140,
+                  ),
+                  // 酒店
+                  Container(
                       padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Wrap(
-                        runAlignment: WrapAlignment.center,
-                        runSpacing: 15,
-                        children: gridSmall
-                            .asMap()
-                            .entries
-                            .map((entry) => _gridSmall(entry))
-                            .toList(),
-                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Column(
+                          children: gridLinks
+                              .asMap()
+                              .entries
+                              .map((entry) => _gridLink(entry))
+                              .toList(),
+                        ),
+                      )),
+                  // 外币兑换
+                  Container(
+                    height: 140,
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Wrap(
+                      runAlignment: WrapAlignment.center,
+                      runSpacing: 15,
+                      children: gridSmall
+                          .asMap()
+                          .entries
+                          .map((entry) => _gridSmall(entry))
+                          .toList(),
                     ),
-                    // 轮播广告图
-                    Container(
-                        height: 120,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Swiper(
-                            itemCount: images.length,
-                            autoplay: true,
-                            pagination: SwiperCustomPagination(builder:
-                                (BuildContext context,
-                                    SwiperPluginConfig config) {
-                              return Container(
-                                alignment: Alignment.bottomCenter,
-                                height: 120,
-                                child: PageIndicator(
-                                  layout: PageIndicatorLayout.LINE,
-                                  size: 20,
-                                  space: 0,
+                  ),
+                  // 轮播广告图
+                  Container(
+                      height: 120,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Swiper(
+                          itemCount: images.length,
+                          autoplay: true,
+                          pagination: SwiperCustomPagination(builder:
+                              (BuildContext context,
+                                  SwiperPluginConfig config) {
+                            return Container(
+                              alignment: Alignment.bottomCenter,
+                              height: 120,
+                              child: PageIndicator(
+                                layout: PageIndicatorLayout.LINE,
+                                size: 20,
+                                space: 0,
 //                          scale:2,
-                                  count: images.length,
-                                  controller: config.pageController,
-                                ),
-                              );
-                            }),
-                            controller: SwiperController(),
-                            itemBuilder: (BuildContext context, int index) {
-                              return Image(
-                                image: AssetImage(images[index]),
-                                fit: BoxFit.fill,
-                              );
-                            },
-                          ),
-                        )),
-                    // 瀑布流图片展示
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xfff1f1f1),
-                      ),
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      margin: EdgeInsets.only(top: 20),
-                      child: Flex(
-                        direction: Axis.horizontal,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 5),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: waterFall
-                                      .map((item) => _waterfall(item, true))
-                                      .toList(),
-                                ),
-                              )),
-                          Expanded(
-                              flex: 1,
-                              child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 5),
-                                child: Column(
-                                  children: waterFallRight
-                                      .map((item) => _waterfall(item, false))
-                                      .toList(),
-                                ),
-                              ))
-                        ],
-                      ),
+                                count: images.length,
+                                controller: config.pageController,
+                              ),
+                            );
+                          }),
+                          controller: SwiperController(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return Image(
+                              image: AssetImage(images[index]),
+                              fit: BoxFit.fill,
+                            );
+                          },
+                        ),
+                      )),
+                  // 瀑布流图片展示
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xfff1f1f1),
                     ),
-                    Offstage(
-                      offstage: !isLoading,
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    margin: EdgeInsets.only(top: 20),
+                    child: Flex(
+                      direction: Axis.horizontal,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 5),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: waterFall
+                                    .map((item) => _waterfall(item, true))
+                                    .toList(),
+                              ),
+                            )),
+                        Expanded(
+                            flex: 1,
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 5),
+                              child: Column(
+                                children: waterFallRight
+                                    .map((item) => _waterfall(item, false))
+                                    .toList(),
+                              ),
+                            ))
+                      ],
+                    ),
+                  ),
+                  Offstage(
+                    offstage: !isLoading,
 //                      offstage: false,
-                      child: Container(
-                          color: Color.fromRGBO(0, 0, 0, 0.1),
-                          padding: EdgeInsets.symmetric(vertical: 4),
-                          child: Center(
-                            child: SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  backgroundColor: Colors.white,
-                                  valueColor:
-                                      AlwaysStoppedAnimation(Colors.blue),
-                                  strokeWidth: 2,
-                                )),
-                          )),
-                    )
-                  ],
-                ),
-              ],
+                    child: Container(
+                        color: Color.fromRGBO(0, 0, 0, 0.1),
+                        padding: EdgeInsets.symmetric(vertical: 4),
+                        child: Center(
+                          child: SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                backgroundColor: Colors.white,
+                                valueColor: AlwaysStoppedAnimation(Colors.blue),
+                                strokeWidth: 2,
+                              )),
+                        )),
+                  )
+                ],
+              ),
             )));
   }
 

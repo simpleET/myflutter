@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:lskdemo/widgets/flutter_page_indicator.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'dart:ui' as ui;
 
 class HomePage extends StatefulWidget {
   @override
@@ -166,7 +164,6 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
   ];
 
   bool isLoading = false;
-  int _currentIndex = 0;
   int _tabIndex = 0;
   PageController _pageController = PageController(
     initialPage: 0,
@@ -182,9 +179,6 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
       print(_scrollController.offset);
     });
 
-    setState(() {
-      _currentIndex = 0;
-    });
     _tabController = TabController(length: tabs.length, vsync: this);
     _tabController.addListener(() {
       // 防止输出两次
@@ -302,68 +296,15 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
         appBar: AppBar(
           toolbarHeight: 0,
           flexibleSpace: Container(
-              decoration: BoxDecoration(gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [
-                        Color(0xFF006FF5),
-                        Color(0xFF38A6FF),
-                      ])),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                  Color(0xFF006FF5),
+                  Color(0xFF38A6FF),
+                ])),
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.date_range), title: Text('行程')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.camera_alt), title: Text('旅拍')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.headset), title: Text('客服')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings), title: Text('我的')),
-          ],
-          currentIndex: _currentIndex,
-          iconSize: 28,
-          type: BottomNavigationBarType.fixed,
-          // 防止不显示颜色
-          selectedFontSize: 16,
-          unselectedFontSize: 16,
-          fixedColor: _mainColor,
-          // 从0开始
-          onTap: (int index) async {
-//          _pageController.jumpToPage(index);
-
-            setState(() {
-              _currentIndex = index;
-            });
-            String routeName = '';
-
-            switch (index) {
-              case 0:
-                routeName = 'home_page';
-                break;
-              case 1:
-                routeName = 'trip_page';
-                break;
-              case 2:
-                routeName = 'travel_page';
-                break;
-              case 3:
-                routeName = 'service_page';
-                break;
-              case 4:
-                routeName = 'my_page';
-                break;
-              default:
-                routeName = 'home_page';
-                break;
-            }
-            var route = await Navigator.pushNamed(context, routeName,
-                arguments: {'lsk': '4343'});
-//            print('路由返回了$route');
-            _currentIndex = 0;
-          },
         ),
         body: NotificationListener(
             onNotification: (ScrollNotification notification) {
@@ -406,7 +347,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: [
-                  // 顶部导航栏
+                  // 顶部，用来替代AppBar()
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     decoration: BoxDecoration(
@@ -508,7 +449,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                                 .toList(),
                             controller: _tabController,
                             isScrollable: true,
-                            indicatorColor:Colors.transparent,
+                            indicatorColor: Colors.transparent,
                             indicatorWeight: 0.1,
                             labelStyle: TextStyle(
                                 fontSize: 18,

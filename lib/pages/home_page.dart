@@ -211,7 +211,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        /*  appBar: AppBar(
           automaticallyImplyLeading: false,
           //
           // titleSpacing:10, // 设置标题距离屏幕左右的边距
@@ -297,6 +297,18 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
               Color(0xFF006FF5),
               Color(0xB238A6FF),
             ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
+          ),
+        ),*/
+        appBar: AppBar(
+          toolbarHeight: 0,
+          flexibleSpace: Container(
+              decoration: BoxDecoration(gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Color(0xFF006FF5),
+                        Color(0xFF38A6FF),
+                      ])),
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -392,7 +404,123 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                 });
               },
               child: ListView(
+                scrollDirection: Axis.vertical,
                 children: [
+                  // 顶部导航栏
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                          Color(0xFF006FF5),
+                          Color(0xFF38A6FF),
+                        ])),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Container(
+                                height: 30,
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 0, horizontal: 12),
+                                margin: EdgeInsets.only(right: 10),
+                                decoration: BoxDecoration(
+                                  color: Color(0x4CFFFFFF),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        print('去搜索页面');
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Image(
+                                              image: AssetImage(
+                                                  "images/zoom-1.png"),
+                                              height: 16),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              left: 5,
+                                            ),
+                                            child: Text(
+                                              '长隆周年庆，门票7折起！',
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.white),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        print('跳去地图页面');
+                                      },
+                                      child: Image(
+                                          image:
+                                              AssetImage("images/addr-1.png"),
+                                          height: 18),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                print('查看消息');
+                              },
+                              child: Stack(
+                                alignment: Alignment.topRight,
+                                children: [
+                                  Icon(
+                                    Icons.message,
+                                    color: Colors.white,
+                                  ),
+                                  Container(
+                                    width: 8,
+                                    height: 8,
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 10),
+                          child: TabBar(
+                            tabs: tabs
+                                .asMap()
+                                .entries
+                                .map((entry) => _tabs(entry))
+                                .toList(),
+                            controller: _tabController,
+                            isScrollable: true,
+                            indicatorColor:Colors.transparent,
+                            indicatorWeight: 0.1,
+                            labelStyle: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                            unselectedLabelStyle:
+                                TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                   // 顶部链接
                   Container(
                     height: 90,
@@ -781,8 +909,6 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
   // 顶部的导航栏
   Widget _tabs(entry) {
     return Container(
-      height: 30,
-      margin: EdgeInsets.only(bottom: 5),
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [

@@ -24,7 +24,6 @@ class BottomNavigationWidgetState extends State {
     super.initState();
     pageList
       ..add(HomePage())
-      ..add(MyPage())
       ..add(TripPage())
       ..add(TravelPage())
       ..add(ServicePage())

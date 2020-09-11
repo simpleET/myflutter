@@ -33,7 +33,7 @@ class BottomNavigationWidgetState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /*   appBar: AppBar(
         toolbarHeight: 0,
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -45,7 +45,7 @@ class BottomNavigationWidgetState extends State {
                 Color(0xFF38A6FF),
               ])),
         ),
-      ),
+      ),*/
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('首页')),
@@ -72,7 +72,8 @@ class BottomNavigationWidgetState extends State {
           });
         },
       ),
-      body: pageList[_currentIndex],
+      body: MediaQuery.removePadding(
+          context: context, removeTop: true, child: pageList[_currentIndex]),
     );
   }
 }

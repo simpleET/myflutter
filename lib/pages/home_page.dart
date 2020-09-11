@@ -293,19 +293,6 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
             ], begin: Alignment.centerLeft, end: Alignment.centerRight)),
           ),
         ),*/
-        appBar: AppBar(
-          toolbarHeight: 0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                  Color(0xFF006FF5),
-                  Color(0xFF38A6FF),
-                ])),
-          ),
-        ),
         body: NotificationListener(
             onNotification: (ScrollNotification notification) {
               bool canLoad = !isLoading &&
@@ -349,7 +336,8 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                 children: [
                   // 顶部，用来替代AppBar()
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    padding: EdgeInsets.only(
+                        top: 30, right: 10, bottom: 10, left: 10),
                     decoration: BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.centerLeft,

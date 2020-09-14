@@ -794,7 +794,7 @@ class _MyPage extends State {
                                                                 'images/banne'
                                                                     'r-1'
                                                                     '.jpg',),
-                                                            height: 90,
+                                                            height: 80,
                                                             fit:BoxFit.fill,
                                                           ),
                                                         ),
@@ -839,7 +839,7 @@ class _MyPage extends State {
                                                     children: [
                                                     Container(
                                                       margin:EdgeInsets.only
-                                                        (bottom:5),
+                                                        (bottom:10),
                                                       child:   Flex(
                                                         crossAxisAlignment: CrossAxisAlignment.start,
                                                         direction:
@@ -854,7 +854,7 @@ class _MyPage extends State {
                                                                 5),
                                                             child:
                                                             Container(
-                                                              height: 70,
+                                                              height: 60,
                                                               child: Image(
                                                                 image: AssetImage(
                                                                     'images/pic-1'
@@ -882,6 +882,8 @@ class _MyPage extends State {
                                                                           .black,
                                                                       fontSize:
                                                                       16,
+                                                                      height:
+                                                                      1.2,
                                                                     ),
                                                                     maxLines: 2,
                                                                     overflow:
@@ -923,7 +925,7 @@ class _MyPage extends State {
                                                                 image: AssetImage(
                                                                     'images/pic-1'
                                                                     '.jpg'),
-                                                                height: 70,
+                                                                height: 60,
                                                                 fit:BoxFit.fill,
                                                               ),
                                                             ),
@@ -944,6 +946,7 @@ class _MyPage extends State {
                                                                           .black,
                                                                       fontSize:
                                                                           16,
+                                                                          height:1.2,
                                                                     ),
                                                                     maxLines: 2,
                                                                     overflow:

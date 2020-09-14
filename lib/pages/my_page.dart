@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class MyPage extends StatefulWidget {
@@ -158,7 +157,17 @@ class _MyPage extends State {
                                   : [
                                       Color(0xFF38A6FF),
                                       Color(0xFF006FF5),
-                                    ])),
+                                    ]),
+                        /* border: Border(bottom: BorderSide(color:Color 
+                           (0xFFF7F7F7),width:1))*/
+                         /* boxShadow:[
+                            BoxShadow(
+//                              color: Color(0xFFF7F7F7),
+                              color: Colors.black,
+                              offset: Offset(0,2),
+                            )
+                          ]*/
+                      ),
                       padding: EdgeInsets.only(
                           top: 30, right: 10, bottom: 10, left: 10),
                       child: Row(
@@ -776,8 +785,8 @@ class _MyPage extends State {
                                               horizontal: 20, vertical: 20),
                                           child: Flex(
                                             direction: Axis.horizontal,
-                                           crossAxisAlignment:
-                                           CrossAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Expanded(
                                                   flex: 1,
@@ -785,35 +794,44 @@ class _MyPage extends State {
                                                     margin: EdgeInsets.only(
                                                         right: 5),
                                                     child: Column(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
                                                         ClipRRect(
-                                                          borderRadius:BorderRadius.circular(8),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
                                                           child: Image(
                                                             image: AssetImage(
-                                                                'images/banne'
-                                                                    'r-1'
-                                                                    '.jpg',),
+                                                              'images/banne'
+                                                              'r-1'
+                                                              '.jpg',
+                                                            ),
                                                             height: 80,
-                                                            fit:BoxFit.fill,
+                                                            fit: BoxFit.fill,
                                                           ),
                                                         ),
                                                         Container(
                                                           child: Column(
                                                             children: [
-                                                             Container(
-                                                               margin:EdgeInsets.only(top:4),
-                                                               child: Text(
-                                                                 '酒店权益大升级',
-                                                                 style: TextStyle(
-                                                                     color: Colors
-                                                                         .black,
-                                                                     fontSize:
-                                                                     18),
-                                                                 maxLines: 1,
-                                                                 overflow:TextOverflow.ellipsis,
-                                                               ),
-                                                             ),
+                                                              Container(
+                                                                margin: EdgeInsets
+                                                                    .only(
+                                                                        top: 4),
+                                                                child: Text(
+                                                                  '酒店权益大升级',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontSize:
+                                                                          18),
+                                                                  maxLines: 1,
+                                                                  overflow:
+                                                                      TextOverflow
+                                                                          .ellipsis,
+                                                                ),
+                                                              ),
                                                               Text(
                                                                 '携程会员积分专享',
                                                                 style: TextStyle(
@@ -822,7 +840,9 @@ class _MyPage extends State {
                                                                     fontSize:
                                                                         14),
                                                                 maxLines: 1,
-                                                                overflow:TextOverflow.ellipsis,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                               )
                                                             ],
                                                           ),
@@ -837,80 +857,87 @@ class _MyPage extends State {
                                                       EdgeInsets.only(left: 5),
                                                   child: Column(
                                                     children: [
-                                                    Container(
-                                                      margin:EdgeInsets.only
-                                                        (bottom:10),
-                                                      child:   Flex(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        direction:
-                                                        Axis.horizontal,
-                                                        children: [
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: ClipRRect(
-                                                            borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                5),
-                                                            child:
-                                                            Container(
-                                                              height: 60,
-                                                              child: Image(
-                                                                image: AssetImage(
-                                                                    'images/pic-1'
+                                                      Container(
+                                                        margin: EdgeInsets.only(
+                                                            bottom: 10),
+                                                        child: Flex(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          direction:
+                                                              Axis.horizontal,
+                                                          children: [
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                                child:
+                                                                    Container(
+                                                                  height: 60,
+                                                                  child: Image(
+                                                                    image: AssetImage(
+                                                                        'images/pic-1'
                                                                         '.jpg'),
-
-                                                                fit:BoxFit.fill,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          ),
-                                                          Expanded(
-                                                            flex: 2,
-                                                            child: Container(
-                                                              margin: EdgeInsets
-                                                                  .only(
-                                                                left: 5,
-                                                              ),
-                                                              child: Column(
-                                                                children: [
-                                                                  Text(
-                                                                    '泰康拜博口腔十项口腔检查结构',
-                                                                    style:
-                                                                    TextStyle(
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontSize:
-                                                                      16,
-                                                                      height:
-                                                                      1.2,
-                                                                    ),
-                                                                    maxLines: 2,
-                                                                    overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
+                                                                    fit: BoxFit
+                                                                        .fill,
                                                                   ),
-                                                                  Text(
-                                                                    '携程铂金会员以上有福利',
-                                                                    style: TextStyle(
-                                                                        color: Color(
-                                                                            0xFFA2A2A2),
-                                                                        fontSize:
-                                                                        14),
-                                                                    maxLines: 1,
-                                                                    overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                  )
-                                                                ],
+                                                                ),
                                                               ),
                                                             ),
-                                                          )
-                                                        ],
+                                                            Expanded(
+                                                              flex: 2,
+                                                              child: Container(
+                                                                margin:
+                                                                    EdgeInsets
+                                                                        .only(
+                                                                  left: 5,
+                                                                ),
+                                                                child: Column(
+                                                                  children: [
+                                                                    Text(
+                                                                      '泰康拜博口腔十项口腔检查结构',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            16,
+                                                                        height:
+                                                                            1.2,
+                                                                      ),
+                                                                      maxLines:
+                                                                          2,
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                    ),
+                                                                    Text(
+                                                                      '携程铂金会员以上有福利',
+                                                                      style: TextStyle(
+                                                                          color: Color(
+                                                                              0xFFA2A2A2),
+                                                                          fontSize:
+                                                                              14),
+                                                                      maxLines:
+                                                                          1,
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
                                                       Flex(
-                                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
                                                         direction:
                                                             Axis.horizontal,
                                                         children: [
@@ -926,7 +953,8 @@ class _MyPage extends State {
                                                                     'images/pic-1'
                                                                     '.jpg'),
                                                                 height: 60,
-                                                                fit:BoxFit.fill,
+                                                                fit:
+                                                                    BoxFit.fill,
                                                               ),
                                                             ),
                                                           ),
@@ -946,7 +974,8 @@ class _MyPage extends State {
                                                                           .black,
                                                                       fontSize:
                                                                           16,
-                                                                          height:1.2,
+                                                                      height:
+                                                                          1.2,
                                                                     ),
                                                                     maxLines: 2,
                                                                     overflow:
@@ -981,17 +1010,237 @@ class _MyPage extends State {
                                       ],
                                     ),
                                   ),
+                                  // 金融服务
+                                  Container(
+                                    margin: EdgeInsets.only(bottom: 15),
+                                    padding: EdgeInsets.only(bottom: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.white,
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 0, vertical: 10),
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    color: Color(0xFFECECEC),
+                                                    width: 1)),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                '金融服务',
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.chevron_right,
+                                                    color: Color(0xFF9B9B9B),
+                                                    size: 26,
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 20, vertical: 10),
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                 margin:EdgeInsets.only
+                                                   (bottom:20),
+                                                  child: Flex(
+                                                    direction: Axis.horizontal,
+//                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 3,
+                                                        child: Row(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Container(
+                                                                margin: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                                child:
+                                                                    ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
+                                                                  child: Image(
+                                                                      image: AssetImage(
+                                                                          'images/my/my-icon-6.png'),
+                                                                      width:
+                                                                          20),
+                                                                )),
+                                                            Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      left: 5),
+                                                              child: Column(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: [
+                                                                  Text(
+                                                                    '最高可申请20万借款额度',
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                            16),
+                                                                    maxLines: 1,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                  ),
+                                                                  Text(
+                                                                    '开通便捷/随借随还/超低利率',
+                                                                    style: TextStyle(
+                                                                        color: Color(
+                                                                            0xFF9A9A9A),
+                                                                        fontSize:
+                                                                            14),
+                                                                    maxLines: 1,
+                                                                    overflow:
+                                                                        TextOverflow
+                                                                            .ellipsis,
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                          flex: 1,
+                                                          child: Flex(
+                                                            direction:
+                                                                Axis.horizontal,
+                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                            children: [
+                                                              Text('立即开通',
+                                                                  style: TextStyle(
+                                                                      color: Color(
+                                                                          0xFF0C86E9),
+                                                                      fontSize:
+                                                                          16))
+                                                            ],
+                                                          ))
+                                                    ],
+                                                  ),
+                                                ),
+                                                Container(
+                                                  child: Flex(
+                                                    direction: Axis.horizontal,
+//                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 3,
+                                                        child: Row(
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                          children: [
+                                                            Container(
+                                                                margin: EdgeInsets
+                                                                    .only(
+                                                                    top: 5),
+                                                                child:
+                                                                ClipRRect(
+                                                                  borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                      10),
+                                                                  child: Image(
+                                                                      image: AssetImage(
+                                                                          'images/my/my-icon-6.png'),
+                                                                      width:
+                                                                      20),
+                                                                )),
+                                                            Container(
+                                                              padding:
+                                                              EdgeInsets
+                                                                  .only(
+                                                                  left: 5,
+                                                                  right:5),
+                                                              child: Column(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: [
+                                                                  Text(
+                                                                    '携程联名白金信用卡',
+                                                                    style: TextStyle(
+                                                                        color: Colors
+                                                                            .black,
+                                                                        fontSize:
+                                                                        16),
+                                                                    maxLines: 1,
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                  ),
+                                                                  Text(
+                                                                    '免年费/享机酒折'
+                                                                        '扣/最高'
+                                                                        '额度50万',
+                                                                    style: TextStyle(
+                                                                        color: Color(
+                                                                            0xFF9A9A9A),
+                                                                        fontSize:
+                                                                        14),
+                                                                    maxLines: 1,
+                                                                    overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                          flex: 1,
+                                                          child: Flex(
+                                                            direction:
+                                                            Axis.horizontal,
+                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                            children: [
+                                                              Text('立即领取',
+                                                                  style: TextStyle(
+                                                                      color: Color(
+                                                                          0xFF0C86E9),
+                                                                      fontSize:
+                                                                      16))
+                                                            ],
+                                                          ))
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ))
+                                      ],
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
                           ],
                         ),
 
-                        // 测试用的容器
-                        Container(
-                          height: 500,
-                          color: Colors.teal,
-                        )
                       ],
                     ),
                   ))

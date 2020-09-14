@@ -200,7 +200,7 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
 
   TabController _tabController;
 
-  static const _mainColor = Color(0xFF006FF5);
+//  static const _mainColor = Color(0xFF006FF5);
 
   @override
   Widget build(BuildContext context) {

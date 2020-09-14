@@ -75,6 +75,22 @@ flutter:
       - images/pic-2.jpg
       - images/pic-3.jpg
       - images/my/head.jpg
+      - images/my/my-icon-1.png
+      - images/my/my-icon-2.png
+      - images/my/my-icon-3.png
+      - images/my/my-icon-4.png
+      - images/my/my-icon-5.png
+      - images/my/my-icon-6.png
+      - images/my/my-icon-7.png
+      - images/my/my-icon-8.png
+      - images/my/my-icon-9.png
+      - images/my/my-icon-10.png
+      - images/my/my-icon-11.png
+      - images/my/my-icon-12.png
+      - images/my/my-icon-13.png
+      - images/my/my-icon-14.png
+      - images/my/my-icon-15.png
+      - images/my/my-icon-16.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

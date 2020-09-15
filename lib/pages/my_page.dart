@@ -11,6 +11,9 @@ class _MyPage extends State {
   double _opacity = 1;
   double _scrollTop = 0;
   Color _colorTopIcon = Colors.white;
+  List<BoxShadow> _boxShadow = [
+    BoxShadow(offset: Offset(0, 2), color: Color(0xFFEAEAEA), blurRadius: 5)
+  ];
 
   List _line2 = [
     {
@@ -141,7 +144,8 @@ class _MyPage extends State {
             context: context,
             removeTop: true,
             child: Container(
-              color: Color(0xFFE3E3E3),
+              color: Color(0xFFF5F5F5),
+              padding: EdgeInsets.only(bottom: 20),
               child: Column(
                 children: [
                   // 顶部固定栏
@@ -149,18 +153,22 @@ class _MyPage extends State {
                     opacity: _opacity,
                     child: Container(
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: _scrollTop > 10
-                                  ? [Colors.white, Colors.white]
-                                  : [
-                                      Color(0xFF38A6FF),
-                                      Color(0xFF006FF5),
-                                    ]),
-                        /* border: Border(bottom: BorderSide(color:Color 
-                           (0xFFF7F7F7),width:1))*/
-                         /* boxShadow:[
+                        gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: _scrollTop > 10
+                                ? [Colors.white, Colors.white]
+                                : [
+                                    Color(0xFF38A6FF),
+                                    Color(0xFF006FF5),
+                                  ]),
+                        border: Border(
+                            bottom: BorderSide(
+                                color: _scrollTop > 10
+                                    ? Color(0xFFF7F7F7)
+                                    : Colors.transparent,
+                                width: 3)),
+                        /* boxShadow:[
                             BoxShadow(
 //                              color: Color(0xFFF7F7F7),
                               color: Colors.black,
@@ -501,8 +509,10 @@ class _MyPage extends State {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: Colors.white,
+                                        boxShadow: _boxShadow,
                                       ),
                                       child: Row(
                                         mainAxisAlignment:
@@ -573,6 +583,7 @@ class _MyPage extends State {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: Colors.white,
+                                      boxShadow: _boxShadow,
                                     ),
                                     child: Flex(
                                       direction: Axis.horizontal,
@@ -588,6 +599,8 @@ class _MyPage extends State {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: Colors.white,
+                                      boxShadow: _boxShadow,
+
                                     ),
                                     child: Column(
                                       children: [
@@ -649,6 +662,8 @@ class _MyPage extends State {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: Colors.white,
+                                      boxShadow: _boxShadow,
+
                                     ),
                                     child: Column(
                                       children: [
@@ -708,7 +723,8 @@ class _MyPage extends State {
                                   ),
                                   // 我的卡片
                                   Container(
-                                    margin: EdgeInsets.only(bottom: 10),
+                                    margin: EdgeInsets.only(bottom: 10,
+                                      left:10,right:10),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -744,6 +760,8 @@ class _MyPage extends State {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: Colors.white,
+                                      boxShadow: _boxShadow,
+
                                     ),
                                     child: Column(
                                       children: [
@@ -1017,6 +1035,8 @@ class _MyPage extends State {
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: Colors.white,
+                                      boxShadow: _boxShadow,
+
                                     ),
                                     child: Column(
                                       children: [
@@ -1059,8 +1079,8 @@ class _MyPage extends State {
                                             child: Column(
                                               children: [
                                                 Container(
-                                                 margin:EdgeInsets.only
-                                                   (bottom:20),
+                                                  margin: EdgeInsets.only(
+                                                      bottom: 20),
                                                   child: Flex(
                                                     direction: Axis.horizontal,
 //                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1093,7 +1113,9 @@ class _MyPage extends State {
                                                                   .only(
                                                                       left: 5),
                                                               child: Column(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
                                                                 children: [
                                                                   Text(
                                                                     '最高可申请20万借款额度',
@@ -1130,7 +1152,9 @@ class _MyPage extends State {
                                                           child: Flex(
                                                             direction:
                                                                 Axis.horizontal,
-                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
                                                             children: [
                                                               Text('立即开通',
                                                                   style: TextStyle(
@@ -1152,33 +1176,34 @@ class _MyPage extends State {
                                                         flex: 3,
                                                         child: Row(
                                                           crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: [
                                                             Container(
                                                                 margin: EdgeInsets
                                                                     .only(
-                                                                    top: 5),
+                                                                        top: 5),
                                                                 child:
-                                                                ClipRRect(
+                                                                    ClipRRect(
                                                                   borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                      10),
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              10),
                                                                   child: Image(
                                                                       image: AssetImage(
                                                                           'images/my/my-icon-6.png'),
                                                                       width:
-                                                                      20),
+                                                                          20),
                                                                 )),
                                                             Container(
-                                                              padding:
-                                                              EdgeInsets
+                                                              padding: EdgeInsets
                                                                   .only(
-                                                                  left: 5,
-                                                                  right:5),
+                                                                      left: 5,
+                                                                      right: 5),
                                                               child: Column(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
                                                                 children: [
                                                                   Text(
                                                                     '携程联名白金信用卡',
@@ -1186,25 +1211,25 @@ class _MyPage extends State {
                                                                         color: Colors
                                                                             .black,
                                                                         fontSize:
-                                                                        16),
+                                                                            16),
                                                                     maxLines: 1,
                                                                     overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                   ),
                                                                   Text(
                                                                     '免年费/享机酒折'
-                                                                        '扣/最高'
-                                                                        '额度50万',
+                                                                    '扣/最高'
+                                                                    '额度50万',
                                                                     style: TextStyle(
                                                                         color: Color(
                                                                             0xFF9A9A9A),
                                                                         fontSize:
-                                                                        14),
+                                                                            14),
                                                                     maxLines: 1,
                                                                     overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
+                                                                        TextOverflow
+                                                                            .ellipsis,
                                                                   )
                                                                 ],
                                                               ),
@@ -1216,15 +1241,17 @@ class _MyPage extends State {
                                                           flex: 1,
                                                           child: Flex(
                                                             direction:
-                                                            Axis.horizontal,
-                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                                Axis.horizontal,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
                                                             children: [
                                                               Text('立即领取',
                                                                   style: TextStyle(
                                                                       color: Color(
                                                                           0xFF0C86E9),
                                                                       fontSize:
-                                                                      16))
+                                                                          16))
                                                             ],
                                                           ))
                                                     ],
@@ -1240,7 +1267,6 @@ class _MyPage extends State {
                             ),
                           ],
                         ),
-
                       ],
                     ),
                   ))

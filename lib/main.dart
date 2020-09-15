@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lskdemo/pages/search_page.dart';
 import 'bottom_navigation_widget.dart';
 
 void main() {
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: _mainColor,
       ),
+      routes: {
+        'search':(context)=>SearchPage(),
+      },
       home: BottomNavigationWidget(),
     );
   }

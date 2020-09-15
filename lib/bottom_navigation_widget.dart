@@ -59,11 +59,11 @@ class BottomNavigationWidgetState extends State {
               icon: Icon(Icons.account_circle), title: Text('我的')),
         ],
         currentIndex: _currentIndex,
-        iconSize: 28,
+        iconSize: 22,
         type: BottomNavigationBarType.fixed,
         // 防止不显示颜色
-        selectedFontSize: 16,
-        unselectedFontSize: 16,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
         fixedColor: _mainColor,
         // 从0开始
         onTap: (int index) async {

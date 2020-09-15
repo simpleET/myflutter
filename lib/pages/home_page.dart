@@ -368,7 +368,8 @@ class _HomePage extends State with SingleTickerProviderStateMixin {
                                   children: [
                                     GestureDetector(
                                       onTap: () {
-                                        print('去搜索页面');
+//                                        print('去搜索页面');
+                                      Navigator.pushNamed(context, 'search');
                                       },
                                       child: Row(
                                         children: [

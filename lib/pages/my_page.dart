@@ -145,7 +145,6 @@ class _MyPage extends State {
             removeTop: true,
             child: Container(
               color: Color(0xFFF5F5F5),
-              padding: EdgeInsets.only(bottom: 20),
               child: Column(
                 children: [
                   // 顶部固定栏
@@ -167,14 +166,7 @@ class _MyPage extends State {
                                 color: _scrollTop > 10
                                     ? Color(0xFFF7F7F7)
                                     : Colors.transparent,
-                                width: 3)),
-                        /* boxShadow:[
-                            BoxShadow(
-//                              color: Color(0xFFF7F7F7),
-                              color: Colors.black,
-                              offset: Offset(0,2),
-                            )
-                          ]*/
+                                width: 2)),
                       ),
                       padding: EdgeInsets.only(
                           top: 30, right: 10, bottom: 10, left: 10),
@@ -185,7 +177,7 @@ class _MyPage extends State {
                             child: Container(
                               child: Icon(
                                 Icons.crop_free,
-                                size: 30,
+                                size: 24,
                                 color: _colorTopIcon,
                               ),
                             ),
@@ -201,7 +193,7 @@ class _MyPage extends State {
                                   margin: EdgeInsets.only(left: 15),
                                   child: Icon(
                                     Icons.folder_shared,
-                                    size: 30,
+                                    size: 24,
                                     color: _colorTopIcon,
                                   ),
                                 ),
@@ -212,7 +204,7 @@ class _MyPage extends State {
                                   margin: EdgeInsets.only(left: 15),
                                   child: Icon(
                                     Icons.settings,
-                                    size: 30,
+                                    size: 24,
                                     color: _colorTopIcon,
                                   ),
                                 ),
@@ -226,7 +218,7 @@ class _MyPage extends State {
                                       children: [
                                         Icon(
                                           Icons.message,
-                                          size: 30,
+                                          size: 24,
                                           color: _colorTopIcon,
                                         ),
                                         Container(
@@ -252,7 +244,7 @@ class _MyPage extends State {
                       child: ConstrainedBox(
                     // 通过ConstrainedBox来确保Stack占满屏幕
                     constraints: BoxConstraints.expand(),
-                    child: ListView(
+                    child:  ListView(
                       controller: _scrollController,
                       children: [
                         Stack(
@@ -283,30 +275,30 @@ class _MyPage extends State {
                                   children: [
                                     // 头像
                                     Container(
-                                      height: 80,
+                                      height: 60,
                                       child: Row(
                                         children: [
                                           Container(
-                                              width: 80,
-                                              height: 80,
+                                              width: 60,
+                                              height: 60,
                                               margin:
-                                                  EdgeInsets.only(right: 10),
+                                              EdgeInsets.only(right: 10),
                                               child: ClipRRect(
                                                 child: Image(
                                                   image: AssetImage(
                                                       'images/my/head.jpg'),
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(100),
+                                                BorderRadius.circular(100),
                                               )),
                                           Container(
-                                            padding: EdgeInsets.only(bottom: 3),
+                                            padding: EdgeInsets.only(bottom: 5),
                                             child: Column(
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                              MainAxisAlignment
+                                                  .spaceBetween,
                                               children: [
                                                 Row(
                                                   children: [
@@ -314,24 +306,24 @@ class _MyPage extends State {
                                                       '尊敬的会员',
                                                       style: TextStyle(
                                                           color: Colors.white,
-                                                          fontSize: 22),
+                                                          fontSize: 18),
                                                     ),
                                                     Container(
                                                         margin: EdgeInsets.only(
-                                                            left: 15),
+                                                            left: 10),
                                                         padding:
-                                                            EdgeInsets.only(
-                                                                top: 4,
-                                                                right: 5,
-                                                                bottom: 4,
-                                                                left: 10),
+                                                        EdgeInsets.only(
+                                                            top: 2,
+                                                            right: 5,
+                                                            bottom: 2,
+                                                            left: 10),
                                                         decoration:
-                                                            BoxDecoration(
+                                                        BoxDecoration(
                                                           borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
+                                                          BorderRadius
+                                                              .circular(12),
                                                           color:
-                                                              Color(0xFF006FF5),
+                                                          Color(0xFF006FF5),
                                                         ),
                                                         child: Row(
                                                           children: [
@@ -340,14 +332,14 @@ class _MyPage extends State {
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .white,
-                                                                  fontSize: 12),
+                                                                  fontSize: 10),
                                                             ),
                                                             Icon(
                                                                 Icons
                                                                     .chevron_right,
                                                                 color: Colors
                                                                     .white,
-                                                                size: 20),
+                                                                size: 18),
                                                           ],
                                                         ))
                                                   ],
@@ -356,42 +348,42 @@ class _MyPage extends State {
                                                   children: [
                                                     Container(
                                                       margin: EdgeInsets.only(
-                                                          right: 15),
+                                                          right: 10),
                                                       padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 5,
-                                                              horizontal: 10),
+                                                      EdgeInsets.symmetric(
+                                                          vertical: 2,
+                                                          horizontal: 10),
                                                       decoration: BoxDecoration(
                                                         borderRadius:
-                                                            BorderRadius
-                                                                .circular(20),
+                                                        BorderRadius
+                                                            .circular(20),
                                                         color:
-                                                            Color(0xFF006FF5),
+                                                        Color(0xFF006FF5),
                                                       ),
                                                       child: Text(
                                                         '领会员福利',
                                                         style: TextStyle(
                                                             color: Colors.white,
-                                                            fontSize: 14),
+                                                            fontSize: 10),
                                                       ),
                                                     ),
                                                     Container(
                                                       padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 5,
-                                                              horizontal: 10),
+                                                      EdgeInsets.symmetric(
+                                                          vertical: 2,
+                                                          horizontal: 10),
                                                       decoration: BoxDecoration(
                                                         borderRadius:
-                                                            BorderRadius
-                                                                .circular(20),
+                                                        BorderRadius
+                                                            .circular(20),
                                                         color:
-                                                            Color(0xFF006FF5),
+                                                        Color(0xFF006FF5),
                                                       ),
                                                       child: Text(
                                                         '我的信用',
                                                         style: TextStyle(
                                                             color: Colors.white,
-                                                            fontSize: 14),
+                                                            fontSize: 10),
                                                       ),
                                                     )
                                                   ],
@@ -404,89 +396,89 @@ class _MyPage extends State {
                                     ),
                                     // 积分,收藏
                                     Container(
-                                      margin: EdgeInsets.only(top: 20),
-                                      height: 50,
+                                      margin: EdgeInsets.only(top: 15),
+                                      height: 30,
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 '1',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 18,
+                                                    fontSize: 12,
                                                     fontWeight:
-                                                        FontWeight.bold),
+                                                    FontWeight.bold),
                                               ),
                                               Text(
                                                 '我的收藏',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 18),
+                                                    fontSize: 10),
                                               )
                                             ],
                                           ),
                                           Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 '11',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 18,
+                                                    fontSize: 12,
                                                     fontWeight:
-                                                        FontWeight.bold),
+                                                    FontWeight.bold),
                                               ),
                                               Text(
                                                 '浏览历史',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 14),
+                                                    fontSize: 10),
                                               )
                                             ],
                                           ),
                                           Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 '998',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 16,
+                                                    fontSize: 12,
                                                     fontWeight:
-                                                        FontWeight.bold),
+                                                    FontWeight.bold),
                                               ),
                                               Text(
                                                 '我的积分',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 14),
+                                                    fontSize: 10),
                                               )
                                             ],
                                           ),
                                           Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 '2',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 16,
+                                                    fontSize: 12,
                                                     fontWeight:
-                                                        FontWeight.bold),
+                                                    FontWeight.bold),
                                               ),
                                               Text(
                                                 '优惠券',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 14),
+                                                    fontSize: 10),
                                               )
                                             ],
                                           ),
@@ -499,8 +491,9 @@ class _MyPage extends State {
                             ),
                             // 主体内容区域
                             Container(
-                              margin: EdgeInsets.only(top: 185),
-                              padding: EdgeInsets.symmetric(horizontal: 15),
+                              margin: EdgeInsets.only(top: 140),
+                              padding: EdgeInsets.only(left: 10,right:10,
+                                  bottom:20),
                               child: Column(
                                 children: [
                                   // 开通会员
@@ -509,26 +502,26 @@ class _MyPage extends State {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 15, vertical: 10),
                                       decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          color: Colors.white,
+                                        borderRadius:
+                                        BorderRadius.circular(8),
+                                        color: Colors.white,
                                         boxShadow: _boxShadow,
                                       ),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Container(
-                                                width: 50,
-                                                height: 50,
+                                                width: 35,
+                                                height: 35,
                                                 margin:
-                                                    EdgeInsets.only(right: 10),
+                                                EdgeInsets.only(right: 10),
                                                 child: ClipRRect(
                                                   borderRadius:
-                                                      BorderRadius.circular(50),
+                                                  BorderRadius.circular(50),
                                                   child: Image(
                                                     image: AssetImage(
                                                         'images/my/head.jpg'),
@@ -537,23 +530,23 @@ class _MyPage extends State {
                                               ),
                                               Column(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                MainAxisAlignment
+                                                    .spaceBetween,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     '你尚未升级【超级会员】',
                                                     style: TextStyle(
                                                         color: Colors.black,
-                                                        fontSize: 18),
+                                                        fontSize: 12),
                                                   ),
                                                   Text(
                                                     '开通后立享8类会员特权',
                                                     style: TextStyle(
                                                         color:
-                                                            Color(0xFF9E9E9E),
-                                                        fontSize: 14),
+                                                        Color(0xFF9E9E9E),
+                                                        fontSize: 10),
                                                   )
                                                 ],
                                               ),
@@ -564,12 +557,13 @@ class _MyPage extends State {
                                               Text(
                                                 '立即开通',
                                                 style: TextStyle(
-                                                    color: Color(0xFF333333)),
+                                                    color: Color(0xFF333333),
+                                                    fontSize: 10),
                                               ),
                                               Icon(
                                                 Icons.keyboard_arrow_right,
                                                 color: Color(0xFFA2A2A2),
-                                                size: 24,
+                                                size: 18,
                                               ),
                                             ],
                                           )
@@ -579,7 +573,7 @@ class _MyPage extends State {
                                   Container(
                                     margin: EdgeInsets.only(bottom: 15),
                                     padding:
-                                        EdgeInsets.only(top: 20, bottom: 10),
+                                    EdgeInsets.only(top: 20, bottom: 10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: Colors.white,
@@ -617,13 +611,13 @@ class _MyPage extends State {
                                           ),
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 '我的钱包',
                                                 style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 20),
+                                                    fontSize: 14),
                                               ),
                                               Row(
                                                 children: [
@@ -631,11 +625,12 @@ class _MyPage extends State {
                                                     '查看钱包 · 礼品卡 ·     现金',
                                                     style: TextStyle(
                                                         color: Colors.black,
-                                                        fontSize: 16),
+                                                        fontSize: 10),
                                                   ),
                                                   Icon(
                                                     Icons.chevron_right,
-                                                    color: Color(0xFF9B9B9B),
+                                                    color: Color(0xFF9B9B9B,),
+                                                    size:18,
                                                   )
                                                 ],
                                               )
@@ -648,7 +643,7 @@ class _MyPage extends State {
                                             direction: Axis.horizontal,
                                             children: _myWallet
                                                 .map((item) =>
-                                                    _myWalletWidget(item))
+                                                _myWalletWidget(item))
                                                 .toList(),
                                           ),
                                         )
@@ -680,13 +675,13 @@ class _MyPage extends State {
                                           ),
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 '我的工具',
                                                 style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 20),
+                                                    fontSize: 14),
                                               ),
                                               Row(
                                                 children: [
@@ -694,12 +689,12 @@ class _MyPage extends State {
                                                     '查看全部工具' '',
                                                     style: TextStyle(
                                                         color: Colors.black,
-                                                        fontSize: 16),
+                                                        fontSize: 10),
                                                   ),
                                                   Icon(
                                                     Icons.chevron_right,
                                                     color: Color(0xFF9B9B9B),
-                                                    size: 26,
+                                                    size: 18,
                                                   )
                                                 ],
                                               )
@@ -714,7 +709,7 @@ class _MyPage extends State {
                                             runSpacing: 25,
                                             children: _myTool
                                                 .map((item) =>
-                                                    _myToolWidget(item))
+                                                _myToolWidget(item))
                                                 .toList(),
                                           ),
                                         )
@@ -724,16 +719,16 @@ class _MyPage extends State {
                                   // 我的卡片
                                   Container(
                                     margin: EdgeInsets.only(bottom: 10,
-                                      left:10,right:10),
+                                        left:10,right:10),
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           '我的卡片',
                                           style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 20),
+                                              fontSize: 14),
                                         ),
                                         Row(
                                           children: [
@@ -741,12 +736,12 @@ class _MyPage extends State {
                                               '管理卡片',
                                               style: TextStyle(
                                                   color: Color(0xFF999999),
-                                                  fontSize: 16),
+                                                  fontSize: 10),
                                             ),
                                             Icon(
                                               Icons.keyboard_arrow_right,
                                               color: Color(0xFF999999),
-                                              size: 26,
+                                              size: 18,
                                             )
                                           ],
                                         )
@@ -778,20 +773,20 @@ class _MyPage extends State {
                                           ),
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 '会员中心',
                                                 style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 20),
+                                                    fontSize: 10),
                                               ),
                                               Row(
                                                 children: [
                                                   Icon(
                                                     Icons.chevron_right,
                                                     color: Color(0xFF9B9B9B),
-                                                    size: 26,
+                                                    size: 20,
                                                   )
                                                 ],
                                               )
@@ -804,7 +799,7 @@ class _MyPage extends State {
                                           child: Flex(
                                             direction: Axis.horizontal,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                             children: [
                                               Expanded(
                                                   flex: 1,
@@ -813,18 +808,18 @@ class _MyPage extends State {
                                                         right: 5),
                                                     child: Column(
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                       children: [
                                                         ClipRRect(
                                                           borderRadius:
-                                                              BorderRadius
-                                                                  .circular(8),
+                                                          BorderRadius
+                                                              .circular(8),
                                                           child: Image(
                                                             image: AssetImage(
                                                               'images/banne'
-                                                              'r-1'
-                                                              '.jpg',
+                                                                  'r-1'
+                                                                  '.jpg',
                                                             ),
                                                             height: 80,
                                                             fit: BoxFit.fill,
@@ -836,18 +831,18 @@ class _MyPage extends State {
                                                               Container(
                                                                 margin: EdgeInsets
                                                                     .only(
-                                                                        top: 4),
+                                                                    top: 4),
                                                                 child: Text(
                                                                   '酒店权益大升级',
                                                                   style: TextStyle(
                                                                       color: Colors
                                                                           .black,
                                                                       fontSize:
-                                                                          18),
+                                                                      12),
                                                                   maxLines: 1,
                                                                   overflow:
-                                                                      TextOverflow
-                                                                          .ellipsis,
+                                                                  TextOverflow
+                                                                      .ellipsis,
                                                                 ),
                                                               ),
                                                               Text(
@@ -856,11 +851,11 @@ class _MyPage extends State {
                                                                     color: Color(
                                                                         0xFFA2A2A2),
                                                                     fontSize:
-                                                                        14),
+                                                                    10),
                                                                 maxLines: 1,
                                                                 overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
+                                                                TextOverflow
+                                                                    .ellipsis,
                                                               )
                                                             ],
                                                           ),
@@ -872,7 +867,7 @@ class _MyPage extends State {
                                                 flex: 1,
                                                 child: Container(
                                                   margin:
-                                                      EdgeInsets.only(left: 5),
+                                                  EdgeInsets.only(left: 5),
                                                   child: Column(
                                                     children: [
                                                       Container(
@@ -880,25 +875,25 @@ class _MyPage extends State {
                                                             bottom: 10),
                                                         child: Flex(
                                                           crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          CrossAxisAlignment
+                                                              .start,
                                                           direction:
-                                                              Axis.horizontal,
+                                                          Axis.horizontal,
                                                           children: [
                                                             Expanded(
                                                               flex: 1,
                                                               child: ClipRRect(
                                                                 borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            5),
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    5),
                                                                 child:
-                                                                    Container(
-                                                                  height: 60,
+                                                                Container(
+                                                                  height: 50,
                                                                   child: Image(
                                                                     image: AssetImage(
                                                                         'images/pic-1'
-                                                                        '.jpg'),
+                                                                            '.jpg'),
                                                                     fit: BoxFit
                                                                         .fill,
                                                                   ),
@@ -909,28 +904,29 @@ class _MyPage extends State {
                                                               flex: 2,
                                                               child: Container(
                                                                 margin:
-                                                                    EdgeInsets
-                                                                        .only(
+                                                                EdgeInsets
+                                                                    .only(
                                                                   left: 5,
                                                                 ),
                                                                 child: Column(
+                                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                                   children: [
                                                                     Text(
                                                                       '泰康拜博口腔十项口腔检查结构',
                                                                       style:
-                                                                          TextStyle(
+                                                                      TextStyle(
                                                                         color: Colors
                                                                             .black,
                                                                         fontSize:
-                                                                            16,
-                                                                        height:
-                                                                            1.2,
+                                                                        12,
+                                                                      /*  height:
+                                                                        1.2,*/
                                                                       ),
                                                                       maxLines:
-                                                                          2,
+                                                                      2,
                                                                       overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
+                                                                      TextOverflow
+                                                                          .ellipsis,
                                                                     ),
                                                                     Text(
                                                                       '携程铂金会员以上有福利',
@@ -938,12 +934,12 @@ class _MyPage extends State {
                                                                           color: Color(
                                                                               0xFFA2A2A2),
                                                                           fontSize:
-                                                                              14),
+                                                                          10),
                                                                       maxLines:
-                                                                          1,
+                                                                      1,
                                                                       overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
+                                                                      TextOverflow
+                                                                          .ellipsis,
                                                                     )
                                                                   ],
                                                                 ),
@@ -954,25 +950,25 @@ class _MyPage extends State {
                                                       ),
                                                       Flex(
                                                         crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                         direction:
-                                                            Axis.horizontal,
+                                                        Axis.horizontal,
                                                         children: [
                                                           Expanded(
                                                             flex: 1,
                                                             child: ClipRRect(
                                                               borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          5),
+                                                              BorderRadius
+                                                                  .circular(
+                                                                  5),
                                                               child: Image(
                                                                 image: AssetImage(
                                                                     'images/pic-1'
-                                                                    '.jpg'),
-                                                                height: 60,
+                                                                        '.jpg'),
+                                                                height: 50,
                                                                 fit:
-                                                                    BoxFit.fill,
+                                                                BoxFit.fill,
                                                               ),
                                                             ),
                                                           ),
@@ -981,24 +977,25 @@ class _MyPage extends State {
                                                             child: Container(
                                                               margin: EdgeInsets
                                                                   .only(
-                                                                      left: 5),
+                                                                  left: 5),
                                                               child: Column(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                                 children: [
                                                                   Text(
                                                                     '做任务 赢奖励',
                                                                     style:
-                                                                        TextStyle(
+                                                                    TextStyle(
                                                                       color: Colors
                                                                           .black,
                                                                       fontSize:
-                                                                          16,
+                                                                      12,
                                                                       height:
-                                                                          1.2,
+                                                                      1.2,
                                                                     ),
                                                                     maxLines: 2,
                                                                     overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                                   ),
                                                                   Text(
                                                                     '每天签到赚积分',
@@ -1006,11 +1003,11 @@ class _MyPage extends State {
                                                                         color: Color(
                                                                             0xFFA2A2A2),
                                                                         fontSize:
-                                                                            14),
+                                                                        10),
                                                                     maxLines: 1,
                                                                     overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                                   )
                                                                 ],
                                                               ),
@@ -1053,20 +1050,20 @@ class _MyPage extends State {
                                           ),
                                           child: Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 '金融服务',
                                                 style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 20),
+                                                    fontSize: 14),
                                               ),
                                               Row(
                                                 children: [
                                                   Icon(
                                                     Icons.chevron_right,
                                                     color: Color(0xFF9B9B9B),
-                                                    size: 26,
+                                                    size: 18,
                                                   )
                                                 ],
                                               )
@@ -1089,33 +1086,33 @@ class _MyPage extends State {
                                                         flex: 3,
                                                         child: Row(
                                                           crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          CrossAxisAlignment
+                                                              .start,
                                                           children: [
                                                             Container(
                                                                 margin: EdgeInsets
                                                                     .only(
-                                                                        top: 5),
+                                                                    top: 5),
                                                                 child:
-                                                                    ClipRRect(
+                                                                ClipRRect(
                                                                   borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              10),
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                      10),
                                                                   child: Image(
                                                                       image: AssetImage(
                                                                           'images/my/my-icon-6.png'),
                                                                       width:
-                                                                          20),
+                                                                      20),
                                                                 )),
                                                             Container(
                                                               margin: EdgeInsets
                                                                   .only(
-                                                                      left: 5),
+                                                                  left: 5),
                                                               child: Column(
                                                                 crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                                 children: [
                                                                   Text(
                                                                     '最高可申请20万借款额度',
@@ -1123,11 +1120,11 @@ class _MyPage extends State {
                                                                         color: Colors
                                                                             .black,
                                                                         fontSize:
-                                                                            16),
+                                                                        12),
                                                                     maxLines: 1,
                                                                     overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                                   ),
                                                                   Text(
                                                                     '开通便捷/随借随还/超低利率',
@@ -1135,11 +1132,11 @@ class _MyPage extends State {
                                                                         color: Color(
                                                                             0xFF9A9A9A),
                                                                         fontSize:
-                                                                            14),
+                                                                        10),
                                                                     maxLines: 1,
                                                                     overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                                   )
                                                                 ],
                                                               ),
@@ -1151,17 +1148,17 @@ class _MyPage extends State {
                                                           flex: 1,
                                                           child: Flex(
                                                             direction:
-                                                                Axis.horizontal,
+                                                            Axis.horizontal,
                                                             mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .end,
+                                                            MainAxisAlignment
+                                                                .end,
                                                             children: [
                                                               Text('立即开通',
                                                                   style: TextStyle(
                                                                       color: Color(
                                                                           0xFF0C86E9),
                                                                       fontSize:
-                                                                          16))
+                                                                      12))
                                                             ],
                                                           ))
                                                     ],
@@ -1176,34 +1173,34 @@ class _MyPage extends State {
                                                         flex: 3,
                                                         child: Row(
                                                           crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          CrossAxisAlignment
+                                                              .start,
                                                           children: [
                                                             Container(
                                                                 margin: EdgeInsets
                                                                     .only(
-                                                                        top: 5),
+                                                                    top: 5),
                                                                 child:
-                                                                    ClipRRect(
+                                                                ClipRRect(
                                                                   borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              10),
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                      10),
                                                                   child: Image(
                                                                       image: AssetImage(
                                                                           'images/my/my-icon-6.png'),
                                                                       width:
-                                                                          20),
+                                                                      20),
                                                                 )),
                                                             Container(
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                      left: 5,
-                                                                      right: 5),
+                                                                  left: 5,
+                                                                  right: 5),
                                                               child: Column(
                                                                 crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                                 children: [
                                                                   Text(
                                                                     '携程联名白金信用卡',
@@ -1211,25 +1208,25 @@ class _MyPage extends State {
                                                                         color: Colors
                                                                             .black,
                                                                         fontSize:
-                                                                            16),
+                                                                        12),
                                                                     maxLines: 1,
                                                                     overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                                   ),
                                                                   Text(
                                                                     '免年费/享机酒折'
-                                                                    '扣/最高'
-                                                                    '额度50万',
+                                                                        '扣/最高'
+                                                                        '额度50万',
                                                                     style: TextStyle(
                                                                         color: Color(
                                                                             0xFF9A9A9A),
                                                                         fontSize:
-                                                                            14),
+                                                                        10),
                                                                     maxLines: 1,
                                                                     overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                                   )
                                                                 ],
                                                               ),
@@ -1241,17 +1238,17 @@ class _MyPage extends State {
                                                           flex: 1,
                                                           child: Flex(
                                                             direction:
-                                                                Axis.horizontal,
+                                                            Axis.horizontal,
                                                             mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .end,
+                                                            MainAxisAlignment
+                                                                .end,
                                                             children: [
                                                               Text('立即领取',
                                                                   style: TextStyle(
                                                                       color: Color(
                                                                           0xFF0C86E9),
                                                                       fontSize:
-                                                                          16))
+                                                                      12))
                                                             ],
                                                           ))
                                                     ],
@@ -1295,7 +1292,7 @@ Widget _line2Widget(item) {
                       image: AssetImage(
                         item['imgSrc'],
                       ),
-                      height: 30,
+                      height: 25,
                     ),
                     Positioned(
                         right: -8,
@@ -1313,7 +1310,7 @@ Widget _line2Widget(item) {
                                   ? '99+'
                                   : item['msgNum'].toString(),
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
+                                  TextStyle(color: Colors.white, fontSize: 10),
                             ),
                           ),
                         )),
@@ -1321,7 +1318,7 @@ Widget _line2Widget(item) {
                 )),
             Text(
               item['name'],
-              style: TextStyle(color: Colors.black, fontSize: 16),
+              style: TextStyle(color: Colors.black, fontSize: 12),
             ),
           ],
         ),
@@ -1340,12 +1337,12 @@ Widget _myWalletWidget(item) {
             margin: EdgeInsets.only(bottom: 8),
             child: Image(
               image: AssetImage(item['imgSrc']),
-              height: 30,
+              height: 20,
             ),
           ),
           Text(
             item['name'],
-            style: TextStyle(color: Colors.black, fontSize: 16),
+            style: TextStyle(color: Colors.black, fontSize: 10),
           ),
         ],
       ),
@@ -1365,12 +1362,12 @@ Widget _myToolWidget(item) {
             margin: EdgeInsets.only(bottom: 8),
             child: Image(
               image: AssetImage(item['imgSrc']),
-              height: 30,
+              height: 20,
             ),
           ),
           Text(
             item['name'],
-            style: TextStyle(color: Colors.black, fontSize: 16),
+            style: TextStyle(color: Colors.black, fontSize: 10),
           ),
         ],
       ),

@@ -332,7 +332,7 @@ class _MyPage extends State {
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .white,
-                                                                  fontSize: 10),
+                                                                  fontSize: 12),
                                                             ),
                                                             Icon(
                                                                 Icons
@@ -364,7 +364,7 @@ class _MyPage extends State {
                                                         '领会员福利',
                                                         style: TextStyle(
                                                             color: Colors.white,
-                                                            fontSize: 10),
+                                                            fontSize: 12),
                                                       ),
                                                     ),
                                                     Container(
@@ -383,7 +383,7 @@ class _MyPage extends State {
                                                         '我的信用',
                                                         style: TextStyle(
                                                             color: Colors.white,
-                                                            fontSize: 10),
+                                                            fontSize: 12),
                                                       ),
                                                     )
                                                   ],
@@ -397,7 +397,7 @@ class _MyPage extends State {
                                     // 积分,收藏
                                     Container(
                                       margin: EdgeInsets.only(top: 15),
-                                      height: 30,
+                                      height: 35,
                                       child: Row(
                                         mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -410,7 +410,7 @@ class _MyPage extends State {
                                                 '1',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                     fontWeight:
                                                     FontWeight.bold),
                                               ),
@@ -418,7 +418,7 @@ class _MyPage extends State {
                                                 '我的收藏',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 10),
+                                                    fontSize: 12),
                                               )
                                             ],
                                           ),
@@ -430,7 +430,7 @@ class _MyPage extends State {
                                                 '11',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                     fontWeight:
                                                     FontWeight.bold),
                                               ),
@@ -438,7 +438,7 @@ class _MyPage extends State {
                                                 '浏览历史',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 10),
+                                                    fontSize: 12),
                                               )
                                             ],
                                           ),
@@ -450,7 +450,7 @@ class _MyPage extends State {
                                                 '998',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                     fontWeight:
                                                     FontWeight.bold),
                                               ),
@@ -458,7 +458,7 @@ class _MyPage extends State {
                                                 '我的积分',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 10),
+                                                    fontSize: 12),
                                               )
                                             ],
                                           ),
@@ -470,7 +470,7 @@ class _MyPage extends State {
                                                 '2',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 12,
+                                                    fontSize: 14,
                                                     fontWeight:
                                                     FontWeight.bold),
                                               ),
@@ -478,7 +478,7 @@ class _MyPage extends State {
                                                 '优惠券',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 10),
+                                                    fontSize: 12),
                                               )
                                             ],
                                           ),
@@ -491,7 +491,7 @@ class _MyPage extends State {
                             ),
                             // 主体内容区域
                             Container(
-                              margin: EdgeInsets.only(top: 140),
+                              margin: EdgeInsets.only(top: 145),
                               padding: EdgeInsets.only(left: 10,right:10,
                                   bottom:20),
                               child: Column(
@@ -539,14 +539,14 @@ class _MyPage extends State {
                                                     '你尚未升级【超级会员】',
                                                     style: TextStyle(
                                                         color: Colors.black,
-                                                        fontSize: 12),
+                                                        fontSize: 14),
                                                   ),
                                                   Text(
                                                     '开通后立享8类会员特权',
                                                     style: TextStyle(
                                                         color:
                                                         Color(0xFF9E9E9E),
-                                                        fontSize: 10),
+                                                        fontSize: 12),
                                                   )
                                                 ],
                                               ),
@@ -558,7 +558,7 @@ class _MyPage extends State {
                                                 '立即开通',
                                                 style: TextStyle(
                                                     color: Color(0xFF333333),
-                                                    fontSize: 10),
+                                                    fontSize: 12),
                                               ),
                                               Icon(
                                                 Icons.keyboard_arrow_right,
@@ -625,7 +625,7 @@ class _MyPage extends State {
                                                     '查看钱包 · 礼品卡 ·     现金',
                                                     style: TextStyle(
                                                         color: Colors.black,
-                                                        fontSize: 10),
+                                                        fontSize: 12),
                                                   ),
                                                   Icon(
                                                     Icons.chevron_right,
@@ -689,7 +689,7 @@ class _MyPage extends State {
                                                     '查看全部工具' '',
                                                     style: TextStyle(
                                                         color: Colors.black,
-                                                        fontSize: 10),
+                                                        fontSize: 12),
                                                   ),
                                                   Icon(
                                                     Icons.chevron_right,
@@ -736,7 +736,7 @@ class _MyPage extends State {
                                               '管理卡片',
                                               style: TextStyle(
                                                   color: Color(0xFF999999),
-                                                  fontSize: 10),
+                                                  fontSize: 12),
                                             ),
                                             Icon(
                                               Icons.keyboard_arrow_right,
@@ -779,7 +779,7 @@ class _MyPage extends State {
                                                 '会员中心',
                                                 style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 10),
+                                                    fontSize: 12),
                                               ),
                                               Row(
                                                 children: [
@@ -1310,7 +1310,7 @@ Widget _line2Widget(item) {
                                   ? '99+'
                                   : item['msgNum'].toString(),
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 10),
+                                  TextStyle(color: Colors.white, fontSize: 12),
                             ),
                           ),
                         )),
@@ -1318,7 +1318,7 @@ Widget _line2Widget(item) {
                 )),
             Text(
               item['name'],
-              style: TextStyle(color: Colors.black, fontSize: 12),
+              style: TextStyle(color: Colors.black, fontSize: 14),
             ),
           ],
         ),
@@ -1342,7 +1342,7 @@ Widget _myWalletWidget(item) {
           ),
           Text(
             item['name'],
-            style: TextStyle(color: Colors.black, fontSize: 10),
+            style: TextStyle(color: Colors.black, fontSize: 12),
           ),
         ],
       ),
@@ -1367,7 +1367,7 @@ Widget _myToolWidget(item) {
           ),
           Text(
             item['name'],
-            style: TextStyle(color: Colors.black, fontSize: 10),
+            style: TextStyle(color: Colors.black, fontSize: 12),
           ),
         ],
       ),

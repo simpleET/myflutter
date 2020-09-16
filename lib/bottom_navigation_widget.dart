@@ -18,6 +18,7 @@ class BottomNavigationWidgetState extends State {
   static const _mainColor = Color(0xFF006FF5);
 
   List<Widget> pageList = List();
+  DateTime _lastPressedAt;
 
   @override
   void initState() {
@@ -73,7 +74,21 @@ class BottomNavigationWidgetState extends State {
         },
       ),
       body: MediaQuery.removePadding(
-          context: context, removeTop: true, child: pageList[_currentIndex]),
+          context: context,
+          removeTop: true,
+          child: WillPopScope(
+            // 在1s 内双击才可以退出app,防止误触
+            onWillPop: () async {
+              if (_lastPressedAt == null ||
+                  DateTime.now().difference(_lastPressedAt) >
+                      Duration(seconds: 1)) {
+                _lastPressedAt = DateTime.now();
+                return false;
+              }
+              return true;
+            },
+            child: pageList[_currentIndex],
+          )),
     );
   }
 }

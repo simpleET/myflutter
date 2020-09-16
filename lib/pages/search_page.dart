@@ -10,7 +10,6 @@ class SearchPage extends StatefulWidget{
 
 
 class _SearchPage extends State<SearchPage>{
-	DateTime _lastPressedAt;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +18,7 @@ class _SearchPage extends State<SearchPage>{
 			title: Text('搜索页面'),
 			centerTitle: true,
 		),
-		body: WillPopScope(
-			child: Center(child: Text('搜索模块'),),
-		),
+		body:Center(child: Text('搜索模块'),)
 	);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lskdemo/widgets/test_inherited_widget/inherited_widget_testRoute.dart';
 
 class SearchPage extends StatefulWidget{
   @override
@@ -18,7 +19,7 @@ class _SearchPage extends State<SearchPage>{
 			title: Text('搜索页面'),
 			centerTitle: true,
 		),
-		body:Center(child: Text('搜索模块'),)
+		body:Center(child: InheritedWidgetTestRoute(),)
 	);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lskdemo/test-demo/dialog.dart';
+//import 'package:lskdemo/test-demo/dialog.dart';
+import 'package:lskdemo/test-demo/event.dart';
 
 class ServicePage extends StatefulWidget {
   @override
@@ -17,7 +18,8 @@ class _ServicePage extends State {
           centerTitle: true,
           backgroundColor: Colors.blue,
         ),
-        body:MyDialog(),
+//        body:MyDialog(),
+        body:MyEvent(),
     );
   }
 }
